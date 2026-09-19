@@ -1,0 +1,34 @@
+name: support-escalation
+model: jev-latest
+confidence_threshold: 0.60
+
+states:
+  intake:
+    description: New ticket received, initial classification
+  l1_support:
+    description: Tier-1 support handling — common issues, FAQ, basic troubleshooting
+  l2_support:
+    description: Tier-2 technical support — complex issues, logs, deep troubleshooting
+  l3_engineering:
+    description: Engineering escalation — bugs, outages, code-level investigation
+  billing:
+    description: Billing and account team — payment issues, refunds, plan changes
+  resolved:
+    terminal: true
+
+transitions:
+  intake:
+    to: [l1_support, billing, l3_engineering]
+    instructions: Based on the ticket content, which team should handle this?
+  l1_support:
+    to: [resolved, l2_support, billing]
+    instructions: Can L1 resolve this or does it need escalation?
+  l2_support:
+    to: [resolved, l3_engineering, billing]
+    instructions: Can L2 resolve this or does it need engineering?
+  l3_engineering:
+    to: [resolved]
+    instructions: Is this resolved from engineering perspective?
+  billing:
+    to: [resolved]
+    instructions: Is the billing issue resolved?

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jev-fsm"
+version = "0.1.0"
+description = "Probabilistic state machine powered by TypeSafe Jev"
+requires-python = ">=3.10"
+dependencies = ["typesafe-sdk", "pyyaml"]
+
+[project.scripts]
+jev-fsm = "jevfsm.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["jevfsm*"]

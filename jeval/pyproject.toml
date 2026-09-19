@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jeval"
+version = "0.1.0"
+description = "LLM output evaluator powered by TypeSafe Jev"
+requires-python = ">=3.10"
+dependencies = ["typesafe-sdk"]
+
+[project.scripts]
+jeval = "jeval.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["jeval*"]

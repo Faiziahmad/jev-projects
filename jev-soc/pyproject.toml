@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jev-soc"
+version = "0.1.0"
+description = "SOC alert triage powered by TypeSafe Jev"
+requires-python = ">=3.10"
+dependencies = ["typesafe-sdk", "jev-fsm"]
+
+[project.scripts]
+jev-soc = "jevsoc.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["jevsoc*"]

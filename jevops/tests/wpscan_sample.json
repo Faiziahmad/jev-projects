@@ -1,0 +1,38 @@
+{
+  "version": {
+    "number": "5.8.1",
+    "status": "outdated"
+  },
+  "plugins": {
+    "contact-form-7": {
+      "version": {"number": "5.1.1"},
+      "vulnerabilities": [
+        {
+          "title": "Contact Form 7 < 5.3.2 - Unrestricted File Upload",
+          "fixed_in": "5.3.2",
+          "references": {
+            "cve": ["CVE-2020-35489"],
+            "url": ["https://wpscan.com/vulnerability/e3b6bfb5"]
+          }
+        }
+      ]
+    },
+    "wp-file-manager": {
+      "version": {"number": "6.0"},
+      "vulnerabilities": [
+        {
+          "title": "File Manager < 6.9 - Unauthenticated Arbitrary File Upload leading to RCE",
+          "fixed_in": "6.9",
+          "references": {
+            "cve": ["CVE-2020-25213"],
+            "url": ["https://wpscan.com/vulnerability/e8a37f52"]
+          }
+        }
+      ]
+    }
+  },
+  "users": {
+    "admin": {"found_by": "Author Posts"},
+    "editor": {"found_by": "RSS Generator"}
+  }
+}

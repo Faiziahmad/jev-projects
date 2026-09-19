@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jevops"
+version = "0.1.0"
+description = "Pentest findings classifier powered by TypeSafe Jev"
+requires-python = ">=3.10"
+dependencies = ["typesafe-sdk", "pyyaml"]
+
+[project.scripts]
+jevops = "jevops.cli:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["jevops*"]

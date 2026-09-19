@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nmaprun>
+  <!-- Host 1: hardened, minimal attack surface -->
+  <host>
+    <address addr="10.0.0.10" addrtype="ipv4"/>
+    <hostnames><hostname name="hardened.local"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="22">
+        <state state="open"/>
+        <service name="ssh" product="OpenSSH" version="8.9"/>
+      </port>
+      <port protocol="tcp" portid="443">
+        <state state="open"/>
+        <service name="https" product="nginx" version="1.24.0" tunnel="ssl"/>
+      </port>
+    </ports>
+  </host>
+
+  <!-- Host 2: juicy internal server -->
+  <host>
+    <address addr="10.0.0.20" addrtype="ipv4"/>
+    <hostnames><hostname name="devbox.local"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="21">
+        <state state="open"/>
+        <service name="ftp" product="vsftpd" version="2.3.4"/>
+      </port>
+      <port protocol="tcp" portid="23">
+        <state state="open"/>
+        <service name="telnet" product="" version=""/>
+      </port>
+      <port protocol="tcp" portid="445">
+        <state state="open"/>
+        <service name="microsoft-ds" product="Windows 7 SP1" version=""/>
+      </port>
+      <port protocol="tcp" portid="1433">
+        <state state="open"/>
+        <service name="ms-sql-s" product="Microsoft SQL Server" version="2008"/>
+      </port>
+      <port protocol="tcp" portid="3389">
+        <state state="open"/>
+        <service name="ms-wbt-server" product="Microsoft Terminal Services" version=""/>
+      </port>
+      <port protocol="tcp" portid="5900">
+        <state state="open"/>
+        <service name="vnc" product="RealVNC" version="4.1.3"/>
+      </port>
+    </ports>
+  </host>
+
+  <!-- Host 3: web server with old tech -->
+  <host>
+    <address addr="10.0.0.30" addrtype="ipv4"/>
+    <hostnames><hostname name="legacy-web.local"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="80">
+        <state state="open"/>
+        <service name="http" product="Microsoft IIS httpd" version="6.0"/>
+      </port>
+      <port protocol="tcp" portid="8443">
+        <state state="open"/>
+        <service name="https-alt" product="Apache Tomcat" version="5.5.23" tunnel="ssl"/>
+      </port>
+    </ports>
+  </host>
+</nmaprun>
