@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyTrack — Job Application Tracker",
+  "short_name": "ApplyTrack",
+  "version": "1.0.0",
+  "description": "Save jobs from LinkedIn, Indeed or any careers page in one click. Track every application on a board and never miss a follow-up.",
+  "permissions": ["storage", "activeTab", "scripting", "alarms", "notifications"],
+  "host_permissions": ["https://api.gumroad.com/*"],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "Save this job to ApplyTrack",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Save the current job"
+    }
+  }
+}
