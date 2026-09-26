@@ -17,6 +17,7 @@ Built for resale as a **$500 setup + $50/month** service (see `docs/pricing.md`)
 | `docs/setup_guide.md` | Docker install, Twilio, Google OAuth, testing and go-live checklists |
 | `docs/demo_script.md` | 2-minute portfolio/demo video script |
 | `docs/pricing.md` | Packaging, inclusions, add-ons, client intake form |
+| `docs/verification_todo.md` | What still needs testing on real Twilio/Google/Anthropic accounts |
 | `docker-compose.yml`, `Caddyfile`, `.env.example` | n8n + Postgres + automatic HTTPS |
 | `scripts/build_workflow.py` | Regenerates the workflow JSON from the prompt files (per-clinic builds) |
 | `scripts/send_test_message.py` | Sends signed fake Twilio webhooks for testing without a phone |
