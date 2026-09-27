@@ -1,0 +1,6 @@
+# client details and results stay out of this public repo
+clients.yaml
+state/
+reports/
+__pycache__/
+*.egg-info/

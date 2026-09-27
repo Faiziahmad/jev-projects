@@ -1,0 +1,36 @@
+# Copy to .github/workflows/weekly.yml in a PRIVATE repo that holds clients.yaml.
+# Add the DW_SMTP_* values under Settings → Secrets and variables → Actions.
+name: Weekly domain reports
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Mondays 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write          # to save last week's results back to the repo
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ./domain-watch
+      - name: Check every client and email reports
+        env:
+          DW_SMTP_HOST: ${{ secrets.DW_SMTP_HOST }}
+          DW_SMTP_PORT: ${{ secrets.DW_SMTP_PORT }}
+          DW_SMTP_USER: ${{ secrets.DW_SMTP_USER }}
+          DW_SMTP_PASS: ${{ secrets.DW_SMTP_PASS }}
+          DW_FROM: ${{ secrets.DW_FROM }}
+        run: domain-watch run --send
+      - name: Save this week's results for next week's comparison
+        run: |
+          git config user.name "domain-watch"
+          git config user.email "domain-watch@users.noreply.github.com"
+          git add state
+          git commit -m "Weekly results $(date -u +%F)" || echo "no changes"
+          git push
