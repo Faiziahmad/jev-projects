@@ -316,7 +316,7 @@ section { position: relative; padding: clamp(88px, 12vw, 160px) 0; }
 /* Method */
 .method { position: relative; max-width: 920px; margin: 0 auto; }
 .method-line { position: absolute; left: 23px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
-.method-line i { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(var(--red), #8ab8ff); transform-origin: top; transform: scaleY(0); box-shadow: 0 0 14px var(--red); }
+.method-line i { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(var(--red), #8ab8ff); transform-origin: top; transform: scaleY(0); box-shadow: 0 0 10px var(--red), 0 0 24px var(--red); }
 @media (min-width: 768px) { .method-line { left: 50%; transform: translateX(-50%); } }
 .step { position: relative; display: grid; grid-template-columns: 48px 1fr; gap: 24px; padding-bottom: 64px; }
 .step:last-child { padding-bottom: 0; }
@@ -1087,12 +1087,6 @@ tone               <span class="h">0.64</span>
         }
       });
     });
-    // methodology line
-    var fill = document.getElementById("methodFill");
-    gsap.to(fill, { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#method-steps", start: "top 65%", end: "bottom 65%", scrub: true } });
-    document.querySelectorAll(".step").forEach(function (s) {
-      ScrollTrigger.create({ trigger: s, start: "top 65%", onEnter: function () { s.classList.add("active"); }, onLeaveBack: function () { s.classList.remove("active"); } });
-    });
     // work visuals parallax
     document.querySelectorAll(".work-visual .mini-term").forEach(function (m) {
       gsap.fromTo(m, { y: 30 }, { y: -30, ease: "none", scrollTrigger: { trigger: m, start: "top bottom", end: "bottom top", scrub: true } });
@@ -1100,10 +1094,32 @@ tone               <span class="h">0.64</span>
     // marquee skew with velocity
     ScrollTrigger.refresh();
   }
-  if (!hasGsap || reduced) {
-    document.querySelectorAll(".step").forEach(function (s) { s.classList.add("active"); });
-    var mf = document.getElementById("methodFill"); if (mf) mf.style.transform = "scaleY(1)";
-  }
+  /* ---------- Methodology line (native, works without GSAP) ---------- */
+  (function methodLine() {
+    var wrap = document.getElementById("method-steps");
+    var fill = document.getElementById("methodFill");
+    var steps = document.querySelectorAll(".step");
+    if (!wrap || !fill) return;
+    if (reduced) {
+      steps.forEach(function (s) { s.classList.add("active"); });
+      fill.style.transform = "scaleY(1)";
+      return;
+    }
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var mark = window.innerHeight * 0.65;
+      var r = wrap.getBoundingClientRect();
+      var p = r.height > 0 ? (mark - r.top) / r.height : 0;
+      fill.style.transform = "scaleY(" + Math.max(0, Math.min(1, p)) + ")";
+      steps.forEach(function (s) { s.classList.toggle("active", s.getBoundingClientRect().top < mark); });
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    if (lenis) lenis.on("scroll", onScroll);
+    update();
+  })();
 
   /* ---------- Preloader + hero intro ---------- */
   var pre = document.getElementById("preloader");
