@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Domain Health Check — Free</title>
+<meta name="description" content="Free 30-second check: can someone send emails pretending to be your business? Plain-English results and simple fixes. Uses public information only.">
+<meta property="og:title" content="Can someone pretend to be your business by email?">
+<meta property="og:description" content="Free 30-second domain health check with plain-English fixes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%233d8bff'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' stroke='%23fff' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f6f8; --surface: #ffffff; --surface-2: #eef0f4;
+  --ink: #0f1115; --ink-2: #454a55; --muted: #737987;
+  --line: rgba(15,17,21,.09); --line-2: rgba(15,17,21,.16);
+  --brand: #2f74f5; --brand-soft: rgba(47,116,245,.1);
+  --good: #12a150; --good-soft: rgba(18,161,80,.12);
+  --warn: #d97706; --warn-soft: rgba(217,119,6,.13);
+  --bad: #e5484d; --bad-soft: rgba(229,72,77,.12);
+  --tip: #6b7280; --tip-soft: rgba(107,114,128,.12);
+  --shadow: 0 1px 0 rgba(15,17,21,.03), 0 20px 50px -28px rgba(15,17,21,.35);
+  --display: "Syne", "Inter", system-ui, sans-serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0c10; --surface: #14151b; --surface-2: #1b1d25;
+    --ink: #f2f3f6; --ink-2: #b9bdc8; --muted: #8189a0;
+    --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.16);
+    --brand: #4d8dff; --brand-soft: rgba(77,141,255,.14);
+    --good: #34d17a; --good-soft: rgba(52,209,122,.13);
+    --warn: #f5a524; --warn-soft: rgba(245,165,36,.14);
+    --bad: #ff6b6f; --bad-soft: rgba(255,107,111,.14);
+    --tip: #9aa1b2; --tip-soft: rgba(154,161,178,.13);
+    --shadow: 0 30px 60px -30px rgba(0,0,0,.9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0c10; --surface: #14151b; --surface-2: #1b1d25;
+  --ink: #f2f3f6; --ink-2: #b9bdc8; --muted: #8189a0;
+  --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.16);
+  --brand: #4d8dff; --brand-soft: rgba(77,141,255,.14);
+  --good: #34d17a; --good-soft: rgba(52,209,122,.13);
+  --warn: #f5a524; --warn-soft: rgba(245,165,36,.14);
+  --bad: #ff6b6f; --bad-soft: rgba(255,107,111,.14);
+  --tip: #9aa1b2; --tip-soft: rgba(154,161,178,.13);
+  --shadow: 0 30px 60px -30px rgba(0,0,0,.9);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+/* top */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; }
+.logo i { width: 30px; height: 30px; border-radius: 9px; background: var(--brand); display: grid; place-items: center; }
+.logo i svg { width: 16px; height: 16px; }
+.theme { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface); cursor: pointer; display: grid; place-items: center; }
+.theme svg { width: 17px; height: 17px; }
+
+/* hero */
+.hero { text-align: center; padding: 48px 0 28px; }
+.eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; font-weight: 600; color: var(--brand); background: var(--brand-soft); padding: 6px 12px; border-radius: 999px; }
+h1 { font: 800 clamp(32px, 5.6vw, 56px)/1.05 var(--display); letter-spacing: -.035em; margin: 18px auto 14px; max-width: 16ch; }
+h1 em { font-style: normal; color: var(--brand); }
+.lead { color: var(--ink-2); font-size: clamp(15px, 1.6vw, 17px); max-width: 34em; margin: 0 auto 30px; }
+form { display: flex; gap: 8px; max-width: 560px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line-2); border-radius: 16px; padding: 6px; box-shadow: var(--shadow); }
+form:focus-within { border-color: var(--brand); }
+input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; padding: 12px 14px; font-size: 16px; }
+.go { flex: none; border: 0; border-radius: 11px; background: var(--brand); color: #fff; font-weight: 600; padding: 0 20px; cursor: pointer; transition: filter .2s; }
+.go:hover { filter: brightness(1.08); }
+.go:disabled { opacity: .6; cursor: default; }
+.err { color: var(--bad); font-size: 14px; min-height: 22px; margin-top: 10px; }
+.trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 14px; color: var(--muted); font-size: 13.5px; }
+.trust span::before { content: "✓ "; color: var(--good); font-weight: 700; }
+
+/* results */
+#results { padding: 16px 0 40px; }
+.summary { display: grid; gap: 20px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: var(--shadow); }
+@media (min-width: 640px) { .summary { grid-template-columns: auto 1fr; padding: 28px; } }
+.ring { position: relative; width: 132px; height: 132px; margin: 0 auto; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+.ring .track { stroke: var(--surface-2); }
+.ring .bar { stroke: var(--brand); stroke-dasharray: 327; stroke-dashoffset: 327; transition: stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1), stroke .4s; }
+.ring .val { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.ring .val b { font: 800 38px/1 var(--display); letter-spacing: -.03em; }
+.ring .val small { color: var(--muted); font-size: 12px; }
+.sum-text .dom { font: 500 13px var(--mono); color: var(--muted); }
+.sum-text h2 { font: 700 clamp(21px, 2.6vw, 26px)/1.2 var(--display); letter-spacing: -.02em; margin: 6px 0 8px; }
+.sum-text p { margin: 0; color: var(--ink-2); }
+.big-q { margin-top: 14px; display: inline-flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 12px; font-weight: 600; font-size: 14.5px; }
+.big-q.yes { background: var(--bad-soft); color: var(--bad); }
+.big-q.no { background: var(--good-soft); color: var(--good); }
+.big-q.maybe { background: var(--warn-soft); color: var(--warn); }
+
+.checks { display: grid; gap: 10px; margin-top: 16px; }
+.check { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.check summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 36px 1fr auto; gap: 14px; align-items: center; padding: 16px 18px; }
+.check summary::-webkit-details-marker { display: none; }
+.ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; }
+.good .ic { background: var(--good-soft); color: var(--good); }
+.warn .ic { background: var(--warn-soft); color: var(--warn); }
+.bad .ic { background: var(--bad-soft); color: var(--bad); }
+.tip .ic { background: var(--tip-soft); color: var(--tip); }
+.check h3 { margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.35; }
+.check .one { color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+.pill { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.good .pill { background: var(--good-soft); color: var(--good); }
+.warn .pill { background: var(--warn-soft); color: var(--warn); }
+.bad .pill { background: var(--bad-soft); color: var(--bad); }
+.tip .pill { background: var(--tip-soft); color: var(--tip); }
+.check .body { padding: 0 18px 18px 68px; color: var(--ink-2); font-size: 14.5px; }
+@media (max-width: 560px) { .check .body { padding-left: 18px; } .check summary { grid-template-columns: 32px 1fr; } .check summary .pill { grid-column: 2; justify-self: start; } }
+.check .body p { margin: 0 0 10px; }
+.check .fix { background: var(--surface-2); border-radius: 12px; padding: 12px 14px; margin-top: 8px; }
+.check .fix b { display: block; color: var(--ink); font-size: 13px; margin-bottom: 4px; }
+.check code, .check pre { font-family: var(--mono); font-size: 12.5px; }
+.check pre { margin: 8px 0 0; padding: 10px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; white-space: pre-wrap; word-break: break-all; }
+.found { font: 12px/1.5 var(--mono); color: var(--muted); word-break: break-all; margin-top: 8px; }
+
+.loading { text-align: center; padding: 40px 0; color: var(--muted); }
+.spin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--surface-2); border-top-color: var(--brand); animation: spin .8s linear infinite; margin: 0 auto 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.cta { margin-top: 18px; background: var(--ink); color: var(--bg); border-radius: 20px; padding: 26px; display: grid; gap: 16px; align-items: center; }
+@media (min-width: 700px) { .cta { grid-template-columns: 1fr auto; padding: 30px; } }
+.cta h3 { font: 700 22px/1.2 var(--display); margin: 0 0 6px; letter-spacing: -.02em; }
+.cta p { margin: 0; color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.cta-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 12px; font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; background: transparent; }
+.btn.primary { background: var(--brand); color: #fff; }
+.btn.ghost { border-color: color-mix(in srgb, var(--bg) 30%, transparent); color: var(--bg); }
+.btn.ghost:hover { background: color-mix(in srgb, var(--bg) 10%, transparent); }
+.small-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.small-actions button { border: 1px solid var(--line-2); background: var(--surface); border-radius: 10px; padding: 8px 14px; cursor: pointer; font-size: 13.5px; }
+
+/* info sections */
+.info { padding: 40px 0; border-top: 1px solid var(--line); }
+.info h2 { font: 700 clamp(22px, 3vw, 30px)/1.2 var(--display); letter-spacing: -.02em; margin: 0 0 18px; }
+.grid3 { display: grid; gap: 12px; }
+@media (min-width: 700px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+.card b { display: block; margin-bottom: 6px; }
+.card p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.faq details { border-bottom: 1px solid var(--line); padding: 14px 0; }
+.faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::after { content: "+"; color: var(--muted); font-size: 18px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq p { margin: 10px 0 0; color: var(--ink-2); }
+footer { padding: 28px 0 40px; color: var(--muted); font-size: 13px; text-align: center; border-top: 1px solid var(--line); }
+footer a { color: var(--ink-2); }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .ring .bar { transition: none; } .spin { animation-duration: 2s; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="./"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Domain Health Check</a>
+    <button class="theme" id="theme" type="button" aria-label="Switch light or dark mode">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Free · 30 seconds · No sign-up</span>
+    <h1>Can someone <em>pretend to be you</em> by email?</h1>
+    <p class="lead">Type your business website. We'll check a few public settings that stop others from sending fake emails in your name, and show you exactly how to fix anything missing.</p>
+    <form id="form" autocomplete="off">
+      <label for="domain" class="sr-only">Your website</label>
+      <input id="domain" name="domain" placeholder="yourbusiness.com" inputmode="url" autocapitalize="off" spellcheck="false" required>
+      <button class="go" id="go" type="submit">Check now</button>
+    </form>
+    <div class="err" id="err" role="alert"></div>
+    <div class="trust"><span>Only reads public information</span><span>Nothing is tested on your website</span><span>Nothing is stored</span></div>
+  </section>
+
+  <section id="results" aria-live="polite"></section>
+</div>
+
+<section class="info">
+  <div class="wrap">
+    <h2>Why this matters</h2>
+    <div class="grid3">
+      <div class="card"><b>Fake invoices</b><p>Without these settings, anyone can send an email that looks like it came from you, like a fake invoice to your customers.</p></div>
+      <div class="card"><b>Emails landing in spam</b><p>Gmail and Outlook now expect these settings. Missing them can send your real emails straight to spam.</p></div>
+      <div class="card"><b>Customer trust</b><p>A padlock on your website and protected email show customers you take care of their details.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="info faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>What exactly do you check?</summary><p>Only public settings on your domain: the same records every email service reads when it receives an email from you. We also check that your website opens with a secure padlock. We don't test, scan or touch your website in any other way.</p></details>
+    <details><summary>Do you store my results?</summary><p>No. The check runs in your browser and nothing is saved on our side.</p></details>
+    <details><summary>I got a low score. Is my business in danger?</summary><p>Not necessarily. It means some easy protections are missing. Most fixes take 10–15 minutes in your domain settings, and each result shows you how.</p></details>
+    <details><summary>Can you fix it for me?</summary><p>Yes. I also offer a full check-up of your website and business systems with a plain-English report. Use the button under your results to get in touch.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Made by <a href="https://github.com/faiziahmad" target="_blank" rel="noopener">Faizi Ahmad</a> · Results are a quick guide, not a full review.
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  /* ---------- settings: edit these ---------- */
+  var CONTACT_EMAIL = "[YOUR EMAIL]";   // TODO: your email
+  var CHECKUP_PRICE = "$299";           // price shown for the full check-up
+
+  var root = document.documentElement;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  try { var t = localStorage.getItem("dhc-theme"); if (t) root.setAttribute("data-theme", t); } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("dhc-theme", next); } catch (e) {}
+  });
+
+  var form = document.getElementById("form"), input = document.getElementById("domain");
+  var go = document.getElementById("go"), err = document.getElementById("err"), out = document.getElementById("results");
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+
+  function cleanDomain(v) {
+    v = (v || "").trim().toLowerCase();
+    v = v.replace(/^[a-z]+:\/\//, "").replace(/^[^@\/]*@/, "").split(/[\/?#:]/)[0].replace(/\.$/, "");
+    if (v.indexOf("www.") === 0) v = v.slice(4);
+    return /^(?=.{3,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/.test(v) ? v : null;
+  }
+
+  /* ---------- public DNS lookups (DNS over HTTPS) ---------- */
+  var RESOLVERS = [
+    function (n, t) { return "https://dns.google/resolve?name=" + encodeURIComponent(n) + "&type=" + t + "&do=1"; },
+    function (n, t) { return "https://cloudflare-dns.com/dns-query?name=" + encodeURIComponent(n) + "&type=" + t + "&do=1"; }
+  ];
+  function withTimeout(p, ms) { return Promise.race([p, new Promise(function (_, rej) { setTimeout(function () { rej(new Error("timeout")); }, ms); })]); }
+  function dns(name, type) {
+    var i = 0;
+    function attempt() {
+      var url = RESOLVERS[i](name, type);
+      return withTimeout(fetch(url, { headers: { accept: "application/dns-json" } }), 7000)
+        .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+        .catch(function (e) { i++; if (i < RESOLVERS.length) return attempt(); throw e; });
+    }
+    return attempt();
+  }
+  var TYPE_NUM = { TXT: 16, MX: 15, CAA: 257, A: 1 };
+  function answers(res, type) {
+    return (res.Answer || []).filter(function (a) { return a.type === TYPE_NUM[type]; }).map(function (a) { return a.data; });
+  }
+  function txtJoin(d) { // "v=spf1 " "include:x" -> v=spf1 include:x
+    var parts = d.match(/"((?:[^"\\]|\\.)*)"/g);
+    return parts ? parts.map(function (p) { return p.slice(1, -1).replace(/\\"/g, '"'); }).join("") : d;
+  }
+  function txt(name) { return dns(name, "TXT").then(function (r) { return { status: r.Status, list: answers(r, "TXT").map(txtJoin), ad: !!r.AD }; }); }
+
+  function httpsWorks(domain) {
+    var tryUrl = function (u) { return withTimeout(fetch(u, { mode: "no-cors", cache: "no-store", redirect: "follow" }), 9000).then(function () { return true; }); };
+    return tryUrl("https://" + domain + "/").catch(function () { return tryUrl("https://www." + domain + "/"); }).catch(function () { return false; });
+  }
+
+  /* ---------- checks ---------- */
+  function checkSPF(r, hasMail) {
+    var spf = r.list.filter(function (s) { return /^v=spf1(\s|$)/i.test(s); });
+    var c = { key: "spf", title: "List of who can send your emails", weight: 20 };
+    if (!spf.length) {
+      return Object.assign(c, { st: "bad", pill: "Missing", pts: 0, one: "Anyone could send email that looks like it came from you.",
+        body: "<p>Your domain doesn't publish a list of the services allowed to send email for you (called an <b>SPF record</b>). Email providers can't tell your real emails from fake ones.</p>",
+        fix: "Add a TXT record at your domain provider. Your email provider (Google Workspace, Microsoft 365, etc.) gives you the exact value. For Google Workspace it looks like:<pre>v=spf1 include:_spf.google.com ~all</pre>" + (hasMail ? "" : "If you don't send email from this domain at all, use:<pre>v=spf1 -all</pre>") });
+    }
+    if (spf.length > 1) {
+      return Object.assign(c, { st: "bad", pill: "Broken", pts: 5, one: "You have more than one list, so email providers ignore them.", found: spf,
+        body: "<p>Only one SPF record is allowed. With two or more, email providers treat it as an error.</p>",
+        fix: "Merge them into one TXT record that starts with <code>v=spf1</code> and contains all your senders." });
+    }
+    var s = spf[0], m = s.match(/([+?~-])?all\b/i), q = m ? (m[1] || "+") : null;
+    if (q === "-" || q === "~") {
+      return Object.assign(c, { st: "good", pill: "Good", pts: 20, one: q === "-" ? "Strict list in place. Nice." : "List in place.", found: spf,
+        body: "<p>Your domain lists the services allowed to send email for you, and tells providers to distrust anything else.</p>" });
+    }
+    return Object.assign(c, { st: "warn", pill: "Too open", pts: 8, one: "The list exists but lets anyone through.", found: spf,
+      body: "<p>Your SPF record ends in a way that doesn't reject unknown senders" + (q === "+" ? " (it effectively allows <b>everyone</b>)" : "") + ".</p>",
+      fix: "Change the ending to <code>~all</code> (or <code>-all</code> once you're sure every sender is listed)." });
+  }
+
+  function checkDMARC(r) {
+    var rec = r.list.filter(function (s) { return /^v=DMARC1/i.test(s); });
+    var c = { key: "dmarc", title: "Rule for what happens to fake emails", weight: 30 };
+    var fix = "Add a TXT record named <code>_dmarc</code> at your domain provider. A safe starting point:<pre>v=DMARC1; p=quarantine; rua=mailto:you@yourbusiness.com</pre>After a few weeks with no problems, change <code>p=quarantine</code> to <code>p=reject</code>.";
+    if (!rec.length) {
+      return Object.assign(c, { st: "bad", pill: "Missing", pts: 0, one: "Fake emails in your name are delivered like real ones.",
+        body: "<p>There's no <b>DMARC</b> rule, so email providers don't know what to do with emails that fail your checks. Most will simply deliver them. Gmail and Yahoo also now expect this for businesses.</p>", fix: fix });
+    }
+    var p = (rec[0].match(/(?:^|;)\s*p\s*=\s*(\w+)/i) || [])[1];
+    p = p ? p.toLowerCase() : "";
+    if (p === "reject") return Object.assign(c, { st: "good", pill: "Strong", pts: 30, one: "Fake emails get blocked.", found: rec, body: "<p>Emails that pretend to be you are rejected. This is the best setting.</p>" });
+    if (p === "quarantine") return Object.assign(c, { st: "good", pill: "Good", pts: 25, one: "Fake emails go to spam.", found: rec, body: "<p>Emails that pretend to be you are sent to spam. Moving to <code>p=reject</code> later blocks them completely.</p>" });
+    return Object.assign(c, { st: "warn", pill: "Watching only", pts: 10, one: "The rule exists but fake emails still get through.", found: rec,
+      body: "<p>Your DMARC rule is set to <code>p=none</code>, which only reports problems. It doesn't stop anything.</p>", fix: "Once your real emails are passing, change <code>p=none</code> to <code>p=quarantine</code>, then later to <code>p=reject</code>." });
+  }
+
+  function checkHTTPS(ok) {
+    var c = { key: "https", title: "Website opens with a secure padlock", weight: 25 };
+    if (ok) return Object.assign(c, { st: "good", pill: "Good", pts: 25, one: "Visitors see the padlock.", body: "<p>Your website loads over a secure connection (HTTPS), so what visitors type stays private.</p>" });
+    return Object.assign(c, { st: "warn", pill: "Couldn't confirm", pts: 8, one: "We couldn't open a secure version of your site.",
+      body: "<p>We couldn't load your website over HTTPS. The site may be down, blocking checks, or missing a certificate.</p>",
+      fix: "Most hosts offer a free certificate (Let's Encrypt) with one click. Turn it on and make sure <code>http://</code> redirects to <code>https://</code>." });
+  }
+
+  function checkDNSSEC(ad) {
+    var c = { key: "dnssec", title: "Domain settings are signed", weight: 10 };
+    if (ad) return Object.assign(c, { st: "good", pill: "Good", pts: 10, one: "Your domain's answers can't be quietly swapped.", body: "<p><b>DNSSEC</b> is on, so people are sent to the real you, not a look-alike.</p>" });
+    return Object.assign(c, { st: "tip", pill: "Nice to have", pts: 3, one: "An extra layer that's switched off.",
+      body: "<p><b>DNSSEC</b> adds a signature to your domain settings so nobody can quietly redirect your visitors or emails.</p>",
+      fix: "Many domain providers (Cloudflare, Google Domains, Namecheap) let you turn on DNSSEC with one switch." });
+  }
+
+  function checkCAA(list) {
+    var c = { key: "caa", title: "Only chosen companies can issue your padlock", weight: 7 };
+    if (list.length) return Object.assign(c, { st: "good", pill: "Good", pts: 7, one: "You've limited who can create certificates for you.", found: list, body: "<p>A <b>CAA record</b> limits which companies can issue security certificates for your domain.</p>" });
+    return Object.assign(c, { st: "tip", pill: "Nice to have", pts: 2, one: "Any certificate company could issue one for your domain.",
+      body: "<p>A <b>CAA record</b> tells certificate companies which of them you trust. It's a small, free extra step.</p>",
+      fix: "If you use Let's Encrypt, add a CAA record:<pre>0 issue \"letsencrypt.org\"</pre>" });
+  }
+
+  function checkMTASTS(r, hasMail) {
+    var c = { key: "mtasts", title: "Emails to you travel securely", weight: 8 };
+    var rec = r.list.filter(function (s) { return /^v=STSv1/i.test(s); });
+    if (rec.length) return Object.assign(c, { st: "good", pill: "Good", pts: 8, one: "Incoming email must use a secure connection.", found: rec, body: "<p><b>MTA-STS</b> is on, so emails sent to you can't be read on the way.</p>" });
+    return Object.assign(c, { st: "tip", pill: hasMail ? "Nice to have" : "Not needed", pts: hasMail ? 3 : 8, one: hasMail ? "Emails to you may travel without protection." : "This domain doesn't receive email.",
+      body: hasMail ? "<p><b>MTA-STS</b> makes other email services use a secure connection when sending to you.</p>" : "<p>No mail servers found, so this doesn't apply.</p>",
+      fix: hasMail ? "This needs a small policy file on your website plus one TXT record. Your email provider's help pages cover it, or I can set it up for you." : "" });
+  }
+
+  /* ---------- render ---------- */
+  function render(domain, checks) {
+    var score = Math.round(checks.reduce(function (a, c) { return a + c.pts; }, 0) / checks.reduce(function (a, c) { return a + c.weight; }, 0) * 100);
+    var spf = checks[0], dmarc = checks[1];
+    var fakeCls = dmarc.pts >= 25 && spf.st === "good" ? "no" : (dmarc.pts >= 25 || spf.st === "good" ? "maybe" : "yes");
+    var fakeTxt = { yes: "Yes, someone could send fake emails as you", maybe: "Partly protected against fake emails", no: "No, fake emails in your name get stopped" }[fakeCls];
+    var grade = score >= 85 ? ["Looking good", "A few small extras could make it even better."] : score >= 60 ? ["Decent, with gaps", "Some easy fixes would close the gaps."] : ["Needs attention", "Some important protections are missing. The good news: most fixes take minutes."];
+    var color = score >= 85 ? "var(--good)" : score >= 60 ? "var(--warn)" : "var(--bad)";
+    var problems = checks.filter(function (c) { return c.st === "bad" || c.st === "warn"; }).length;
+
+    var html = '<div class="summary"><div class="ring"><svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="bar" id="bar" cx="60" cy="60" r="52" style="stroke:' + color + '"/></svg><div class="val"><b id="num">0</b><small>out of 100</small></div></div>' +
+      '<div class="sum-text"><div class="dom">' + esc(domain) + '</div><h2>' + grade[0] + '</h2><p>' + grade[1] + '</p>' +
+      '<div class="big-q ' + fakeCls + '">' + (fakeCls === "no" ? "✓" : "!") + " " + fakeTxt + '</div></div></div>';
+    html += '<div class="checks">';
+    checks.forEach(function (c, i) {
+      var icon = { good: "✓", warn: "!", bad: "✕", tip: "i" }[c.st];
+      html += '<details class="check ' + c.st + '"' + ((c.st === "bad" || c.st === "warn") && i < 3 ? " open" : "") + '><summary><span class="ic">' + icon + '</span><div><h3>' + c.title + '</h3><div class="one">' + c.one + '</div></div><span class="pill">' + c.pill + '</span></summary><div class="body">' + c.body +
+        (c.fix ? '<div class="fix"><b>How to fix</b>' + c.fix + '</div>' : "") +
+        (c.found && c.found.length ? '<div class="found">Found: ' + c.found.map(esc).join("<br>") + '</div>' : "") + '</div></details>';
+    });
+    html += '</div>';
+
+    var subject = "Full check-up for " + domain;
+    var bodyTxt = "Hi Faizi,\n\nI ran the free check on " + domain + " and got " + score + "/100 (" + problems + " thing" + (problems === 1 ? "" : "s") + " to fix).\nI'd like to know more about the full check-up.\n\nThanks";
+    var mail = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyTxt);
+    html += '<div class="cta"><div><h3>' + (problems ? "Want this fixed, or a full check-up?" : "Want a deeper look?") + '</h3><p>This quick check only covers public settings. A full ' + CHECKUP_PRICE + ' check-up reviews your website, logins and business systems by hand, with a plain-English report and a free re-check.</p></div>' +
+      '<div class="cta-btns"><a class="btn primary" href="' + esc(mail) + '">Get in touch →</a></div></div>';
+    html += '<div class="small-actions"><button type="button" id="copyLink">Copy link to these results</button><button type="button" id="copySum">Copy summary</button><button type="button" id="again">Check another domain</button></div>';
+    out.innerHTML = html;
+
+    var bar = document.getElementById("bar"), num = document.getElementById("num");
+    requestAnimationFrame(function () { bar.style.strokeDashoffset = 327 - 327 * score / 100; });
+    if (reduced) num.textContent = score; else {
+      var t0 = performance.now();
+      (function step(t) { var p = Math.min(1, (t - t0) / 1000); num.textContent = Math.round(score * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); })(t0);
+    }
+    var link = location.origin + location.pathname + "?d=" + encodeURIComponent(domain);
+    function copy(txt, btn, label) {
+      var done = function () { btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = label; }, 1500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, function () {});
+    }
+    document.getElementById("copyLink").addEventListener("click", function () { copy(link, this, "Copy link to these results"); });
+    document.getElementById("copySum").addEventListener("click", function () {
+      var s = "Domain health check: " + domain + " — " + score + "/100\n" + checks.map(function (c) { return (c.st === "good" ? "✓ " : c.st === "tip" ? "• " : "✕ ") + c.title + ": " + c.pill; }).join("\n") + "\n" + link;
+      copy(s, this, "Copy summary");
+    });
+    document.getElementById("again").addEventListener("click", function () { input.value = ""; out.innerHTML = ""; history.replaceState(null, "", location.pathname); input.focus(); window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); });
+  }
+
+  function run(domain) {
+    err.textContent = "";
+    go.disabled = true; go.textContent = "Checking…";
+    out.innerHTML = '<div class="loading"><div class="spin"></div>Checking public settings for <b>' + esc(domain) + '</b>…</div>';
+    history.replaceState(null, "", "?d=" + encodeURIComponent(domain));
+    var mxP = dns(domain, "MX").then(function (r) { return { status: r.Status, list: answers(r, "MX") }; });
+    Promise.all([mxP, txt(domain), txt("_dmarc." + domain), dns(domain, "CAA").then(function (r) { return answers(r, "CAA"); }), txt("_mta-sts." + domain).catch(function () { return { list: [] }; }), httpsWorks(domain)])
+      .then(function (res) {
+        var mx = res[0], root = res[1];
+        if (mx.status === 3 || root.status === 3) {
+          out.innerHTML = ""; err.textContent = "We couldn't find \"" + domain + "\". Check the spelling and try again."; return;
+        }
+        var hasMail = mx.list.filter(function (m) { return !/^0\s+\.$/.test(m); }).length > 0;
+        render(domain, [checkSPF(root, hasMail), checkDMARC(res[2]), checkHTTPS(res[5]), checkDNSSEC(root.ad), checkCAA(res[3]), checkMTASTS(res[4], hasMail)]);
+      })
+      .catch(function () { out.innerHTML = ""; err.textContent = "Something went wrong reaching the public lookup service. Please try again in a moment."; })
+      .then(function () { go.disabled = false; go.textContent = "Check now"; });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var d = cleanDomain(input.value);
+    if (!d) { err.textContent = "Please enter a website like yourbusiness.com"; return; }
+    input.value = d; run(d);
+  });
+
+  var pre = new URLSearchParams(location.search).get("d");
+  if (pre) { var d0 = cleanDomain(pre); if (d0) { input.value = d0; run(d0); } }
+})();
+</script>
+</body>
+</html>
