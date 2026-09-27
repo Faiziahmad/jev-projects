@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faizi Ahmad — Keeping Businesses Safe</title>
+<meta name="description" content="Faizi Ahmad checks websites, apps and company systems for weak spots, then explains in plain English exactly what to fix.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='16' fill='url(%23g)'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-weight='800' font-size='13' fill='%23fff'%3EFA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07080c;
+  --bg-2: #0d0f16;
+  --glass: rgba(255,255,255,.045);
+  --glass-2: rgba(255,255,255,.08);
+  --line: rgba(255,255,255,.09);
+  --line-2: rgba(255,255,255,.18);
+  --ink: #eef0f6;
+  --ink-2: #b9bdcb;
+  --muted: #7f8496;
+  --violet: #7c5cff;
+  --cyan: #22d3ee;
+  --lime: #a3e635;
+  --rose: #fb7185;
+  --grad: linear-gradient(100deg, #a78bfa 0%, #22d3ee 50%, #a3e635 100%);
+  --glow-a: rgba(124,92,255,.35);
+  --glow-b: rgba(34,211,238,.22);
+  --shadow: 0 30px 80px -30px rgba(0,0,0,.9);
+  --display: "Sora", "Inter", system-ui, sans-serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --max: 1180px;
+  --gutter: 16px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f5f6fb; --bg-2: #eceef6; --glass: rgba(255,255,255,.75); --glass-2: #ffffff;
+  --line: rgba(11,12,16,.09); --line-2: rgba(11,12,16,.18);
+  --ink: #0b0c10; --ink-2: #3a3e4c; --muted: #6a6f80;
+  --violet: #6246ea; --cyan: #0891b2; --lime: #4d7c0f; --rose: #e11d48;
+  --grad: linear-gradient(100deg, #6246ea 0%, #0891b2 55%, #4d7c0f 100%);
+  --glow-a: rgba(98,70,234,.18); --glow-b: rgba(8,145,178,.14);
+  --shadow: 0 30px 70px -34px rgba(20,24,40,.35);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f6fb; --bg-2: #eceef6; --glass: rgba(255,255,255,.75); --glass-2: #ffffff;
+    --line: rgba(11,12,16,.09); --line-2: rgba(11,12,16,.18);
+    --ink: #0b0c10; --ink-2: #3a3e4c; --muted: #6a6f80;
+    --violet: #6246ea; --cyan: #0891b2; --lime: #4d7c0f; --rose: #e11d48;
+    --grad: linear-gradient(100deg, #6246ea 0%, #0891b2 55%, #4d7c0f 100%);
+    --glow-a: rgba(98,70,234,.18); --glow-b: rgba(8,145,178,.14);
+    --shadow: 0 30px 70px -34px rgba(20,24,40,.35);
+    color-scheme: light;
+  }
+}
+@media (min-width: 768px) { :root { --gutter: 32px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .4s, color .4s; }
+::selection { background: var(--violet); color: #fff; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: shine 8s ease-in-out infinite alternate; }
+@keyframes shine { to { background-position: 100% 0; } }
+
+/* aurora background */
+.aurora { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .9; animation: drift 22s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { width: 620px; height: 620px; background: var(--glow-a); top: -220px; left: -160px; }
+.aurora i:nth-child(2) { width: 520px; height: 520px; background: var(--glow-b); top: 10%; right: -200px; animation-delay: -8s; }
+.aurora i:nth-child(3) { width: 440px; height: 440px; background: var(--glow-a); bottom: -220px; left: 30%; animation-delay: -14s; opacity: .5; }
+@keyframes drift { to { transform: translate(80px, 60px) scale(1.12); } }
+.grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 20%, transparent 75%); opacity: .6; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 14px; font: 600 15px var(--sans); border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; transition: transform .3s var(--ease), border-color .3s, box-shadow .3s; }
+.btn:hover { transform: translateY(-2px); border-color: var(--cyan); }
+.btn.glow { position: relative; background: linear-gradient(135deg, var(--violet), #4f7cff 55%, var(--cyan)); border: 0; color: #fff; box-shadow: 0 10px 40px -10px var(--violet); }
+.btn.glow:hover { box-shadow: 0 14px 50px -8px var(--violet), 0 0 0 1px rgba(255,255,255,.25) inset; }
+
+/* nav */
+.nav { position: fixed; top: 14px; left: 0; right: 0; z-index: 50; }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 16px; border-radius: 18px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 60%, transparent); backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%); }
+.logo { display: flex; align-items: center; gap: 10px; font: 700 16px var(--display); white-space: nowrap; }
+.logo i { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); display: grid; place-items: center; color: #fff; font: 800 11px var(--display); font-style: normal; }
+.links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+.links a { display: block; padding: 8px 14px; border-radius: 10px; font-size: 14.5px; color: var(--ink-2); transition: color .2s, background .2s; }
+.links a:hover, .links a.active { color: var(--ink); background: var(--glass-2); }
+.nav-r { display: flex; gap: 8px; align-items: center; }
+.ib { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); display: grid; place-items: center; cursor: pointer; }
+.ib svg { width: 18px; height: 18px; }
+.nav .btn { padding: 10px 16px; font-size: 14px; border-radius: 12px; }
+.theme .moon { display: none; }
+:root[data-theme="light"] .theme .sun { display: none; }
+:root[data-theme="light"] .theme .moon { display: block; }
+@media (prefers-color-scheme: light) { :root:not([data-theme]) .theme .sun { display: none; } :root:not([data-theme]) .theme .moon { display: block; } }
+.menu { display: none; }
+@media (max-width: 860px) {
+  .links { position: absolute; top: 64px; left: var(--gutter); right: var(--gutter); flex-direction: column; padding: 10px; border-radius: 18px; border: 1px solid var(--line); background: var(--bg-2); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: .25s var(--ease); }
+  .links.open { opacity: 1; visibility: visible; transform: none; }
+  .links a { font: 600 19px var(--display); padding: 14px; }
+  .menu { display: grid; }
+  .nav .say { display: none; }
+}
+
+/* hero */
+.hero { padding: 140px 0 60px; text-align: center; }
+.badge { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 8px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--glass); font-size: 13.5px; color: var(--ink-2); }
+.badge b { width: 22px; height: 22px; border-radius: 50%; background: var(--lime); display: grid; place-items: center; color: #0b0c10; font-size: 11px; }
+.hero h1 { font: 800 clamp(42px, 7.6vw, 98px)/1.02 var(--display); letter-spacing: -.045em; margin: 24px auto 22px; max-width: 13ch; }
+.hero .lead { font-size: clamp(17px, 1.7vw, 20px); color: var(--ink-2); max-width: 36em; margin: 0 auto 32px; }
+.hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+
+/* before / after */
+.compare { position: relative; max-width: 940px; margin: 64px auto 0; border-radius: 24px; border: 1px solid var(--line-2); background: var(--bg-2); box-shadow: var(--shadow); overflow: hidden; user-select: none; -webkit-user-select: none; text-align: left; }
+.compare::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, var(--violet), transparent 40%, transparent 60%, var(--cyan)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 5; }
+.browser { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--glass); position: relative; z-index: 4; }
+.browser i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
+.browser span { margin-left: 10px; flex: 1; max-width: 340px; padding: 5px 12px; border-radius: 8px; background: var(--glass-2); font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stage { position: relative; aspect-ratio: 16 / 8.2; min-height: 330px; }
+.layer { position: absolute; inset: 0; padding: clamp(18px, 3vw, 32px); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(14px, 2.4vw, 28px); }
+.layer.after { clip-path: inset(0 0 0 var(--pos, 50%)); background: var(--bg-2); }
+.layer.before { background: var(--bg-2); }
+.site-hd { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.site-hd b { font: 700 18px var(--display); }
+.site-hd .tag { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
+.before .tag { background: color-mix(in srgb, var(--rose) 16%, transparent); color: var(--rose); }
+.after .tag { background: color-mix(in srgb, var(--lime) 18%, transparent); color: var(--lime); }
+.blocks { display: grid; gap: 10px; align-content: start; }
+.blk { height: 16px; border-radius: 6px; background: var(--glass-2); }
+.blk.w6 { width: 60%; } .blk.w8 { width: 80%; } .blk.big { height: 70px; border-radius: 12px; }
+.list { display: grid; gap: 9px; align-content: start; }
+.it { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); font-size: 13.5px; line-height: 1.35; }
+.it em { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; font-weight: 700; }
+.before .it em { background: color-mix(in srgb, var(--rose) 18%, transparent); color: var(--rose); }
+.after .it em { background: color-mix(in srgb, var(--lime) 20%, transparent); color: var(--lime); }
+.before .blk.big { background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--rose) 14%, transparent) 0 10px, transparent 10px 20px); border: 1px dashed color-mix(in srgb, var(--rose) 50%, transparent); }
+.after .blk.big { background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 30%, transparent), color-mix(in srgb, var(--cyan) 25%, transparent)); }
+.score { margin-top: 6px; display: flex; align-items: baseline; gap: 8px; }
+.score b { font: 800 40px/1 var(--display); letter-spacing: -.04em; }
+.before .score b { color: var(--rose); } .after .score b { color: var(--lime); }
+.score span { color: var(--muted); font-size: 13px; }
+.handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px; background: linear-gradient(var(--violet), var(--cyan)); z-index: 3; pointer-events: none; }
+.handle::after { content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--violet) 25%, transparent), 0 10px 30px rgba(0,0,0,.4); }
+.stage input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 4; margin: 0; }
+.labels { position: absolute; bottom: 14px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 3; pointer-events: none; font-size: 12px; font-weight: 600; }
+.labels span { padding: 5px 11px; border-radius: 999px; background: color-mix(in srgb, var(--bg) 70%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px); }
+.drag-hint { margin-top: 14px; color: var(--muted); font-size: 13.5px; }
+@media (max-width: 640px) {
+  .stage { aspect-ratio: auto; min-height: 400px; }
+  .layer { grid-template-columns: 1fr; }
+  .layer .blocks { display: none; }
+}
+
+/* certs strip */
+.strip { padding: 56px 0 0; }
+.strip p { text-align: center; color: var(--muted); font-size: 13.5px; margin: 0 0 18px; }
+.certs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.certs span { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); font-size: 13.5px; color: var(--ink-2); transition: border-color .3s, color .3s, transform .3s var(--ease); }
+.certs span b { font-family: var(--display); color: var(--ink); margin-right: 6px; }
+.certs span:hover { border-color: var(--violet); transform: translateY(-2px); }
+
+/* sections */
+section { padding: clamp(90px, 12vw, 150px) 0; }
+.kick { display: inline-block; font: 600 13px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+.h2 { font: 800 clamp(34px, 5.2vw, 64px)/1.05 var(--display); letter-spacing: -.04em; margin: 0; }
+.sub { color: var(--ink-2); font-size: 17.5px; max-width: 34em; margin: 18px 0 0; }
+.center { text-align: center; }
+.center .sub { margin-left: auto; margin-right: auto; }
+
+/* worry picker */
+.picker { margin-top: 44px; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.chip { padding: 12px 18px; border-radius: 14px; border: 1px solid var(--line-2); background: var(--glass); cursor: pointer; font-weight: 500; font-size: 15px; transition: .3s var(--ease); display: inline-flex; align-items: center; gap: 8px; }
+.chip:hover { border-color: var(--cyan); }
+.chip[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.answer { position: relative; margin: 28px auto 0; max-width: 860px; border-radius: 24px; border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: clamp(24px, 4vw, 40px); display: grid; gap: 24px; text-align: left; box-shadow: var(--shadow); }
+@media (min-width: 760px) { .answer { grid-template-columns: 1.2fr .8fr; align-items: center; } }
+.answer .ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 40%, transparent), color-mix(in srgb, var(--cyan) 30%, transparent)); margin-bottom: 16px; }
+.answer h3 { font: 700 clamp(24px, 2.6vw, 30px)/1.15 var(--display); letter-spacing: -.03em; margin: 0 0 10px; }
+.answer p { color: var(--ink-2); margin: 0; }
+.answer ul { list-style: none; margin: 0; padding: 20px; border-radius: 16px; background: var(--glass-2); border: 1px solid var(--line); display: grid; gap: 10px; font-size: 15px; }
+.answer li { display: flex; gap: 10px; }
+.answer li::before { content: "✓"; color: var(--lime); font-weight: 700; }
+.answer .btn { margin-top: 20px; }
+.answer.swap { animation: pop .5s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+
+/* services rows */
+.svc-grid { display: grid; gap: clamp(32px, 5vw, 72px); }
+@media (min-width: 960px) { .svc-grid { grid-template-columns: .8fr 1.2fr; } .svc-side { position: sticky; top: 120px; align-self: start; } }
+.rows { border-top: 1px solid var(--line-2); }
+.row { border-bottom: 1px solid var(--line-2); padding: 28px 0; display: grid; grid-template-columns: 56px 1fr; gap: 6px 18px; position: relative; }
+.row::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--ease); }
+.row:hover::before { transform: scaleX(1); }
+.row .n { font: 600 14px var(--display); color: var(--muted); padding-top: 8px; }
+.row h3 { font: 700 clamp(24px, 3vw, 36px)/1.1 var(--display); letter-spacing: -.035em; margin: 0; transition: transform .45s var(--ease); }
+.row:hover h3 { transform: translateX(8px); }
+.row p { grid-column: 2; margin: 8px 0 0; color: var(--ink-2); max-width: 36em; }
+.row .pills { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.row .pills span { font-size: 12.5px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+
+/* numbers */
+.nums { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+@media (min-width: 860px) { .nums { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.nums div { background: var(--bg); padding: clamp(22px, 3vw, 34px); }
+.nums strong { display: block; font: 800 clamp(34px, 4.4vw, 54px)/1 var(--display); letter-spacing: -.04em; }
+.nums span { display: block; margin-top: 10px; color: var(--muted); font-size: 14.5px; }
+
+/* timeline */
+.timeline { position: relative; margin-top: 60px; display: grid; gap: 18px; }
+@media (min-width: 900px) { .timeline { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.tl-line { display: none; }
+@media (min-width: 900px) {
+  .tl-line { display: block; position: absolute; top: 27px; left: 28px; right: 28px; height: 2px; background: var(--line-2); }
+  .tl-line i { display: block; height: 100%; width: 0; background: var(--grad); transition: width 1.8s var(--ease); box-shadow: 0 0 16px var(--cyan); }
+  .timeline.in .tl-line i { width: 100%; }
+}
+.tl { position: relative; }
+.tl .dot { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--bg); display: grid; place-items: center; font: 700 15px var(--display); position: relative; z-index: 1; margin-bottom: 22px; transition: .5s var(--ease); transition-delay: var(--d, 0s); }
+.timeline.in .tl .dot { background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; border-color: transparent; box-shadow: 0 0 0 6px color-mix(in srgb, var(--violet) 18%, transparent); }
+.tl h3 { font: 700 21px/1.2 var(--display); letter-spacing: -.02em; margin: 0 0 8px; }
+.tl p { color: var(--ink-2); margin: 0; font-size: 15.5px; }
+.tl small { display: inline-block; margin-top: 14px; font-size: 13px; color: var(--cyan); font-weight: 600; }
+
+/* projects carousel */
+.car-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+.car-btns { display: flex; gap: 8px; }
+.car-btns button { width: 48px; height: 48px; border-radius: 14px; border: 1px solid var(--line-2); background: var(--glass); cursor: pointer; font-size: 18px; transition: border-color .3s; }
+.car-btns button:hover { border-color: var(--cyan); }
+.car { display: grid; grid-auto-flow: column; grid-auto-columns: min(88%, 440px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 44px var(--gutter) 20px; margin: 0 calc(-1 * var(--gutter)); scrollbar-width: none; overscroll-behavior-x: contain; }
+.car::-webkit-scrollbar { display: none; }
+.proj { scroll-snap-align: start; border-radius: 24px; border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 26px; display: flex; flex-direction: column; transition: transform .45s var(--ease), border-color .3s; min-height: 470px; }
+.proj:hover { transform: translateY(-6px); border-color: var(--line-2); }
+.proj .top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 13px; }
+.proj .emoji { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 26px; margin: 22px 0 18px; }
+.proj h3 { font: 800 30px/1 var(--display); letter-spacing: -.04em; margin: 0 0 10px; }
+.proj .one { font-size: 18px; font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
+.proj p { color: var(--ink-2); margin: 0 0 18px; font-size: 15px; }
+.mini { margin-top: auto; border-radius: 16px; background: var(--glass-2); border: 1px solid var(--line); padding: 14px; font-size: 13px; display: grid; gap: 8px; }
+.mini .r { display: flex; justify-content: space-between; gap: 10px; }
+.mini .r span:last-child { font-weight: 600; }
+.ok { color: var(--lime); } .warn { color: var(--rose); } .info { color: var(--cyan); }
+.proj a { margin-top: 18px; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; }
+.proj a span { transition: transform .3s var(--ease); }
+.proj:hover a span { transform: translate(3px, -3px); }
+
+/* about */
+.about { display: grid; gap: clamp(32px, 5vw, 64px); align-items: center; }
+@media (min-width: 900px) { .about { grid-template-columns: .85fr 1.15fr; } }
+.me { position: relative; aspect-ratio: 1; max-width: 440px; width: 100%; margin: 0 auto; }
+.me .ringz { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, var(--violet), var(--cyan), var(--lime), var(--violet)); animation: spin 14s linear infinite; padding: 3px; -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.me .pic { position: absolute; inset: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--violet) 55%, transparent), transparent 60%), radial-gradient(circle at 75% 80%, color-mix(in srgb, var(--cyan) 45%, transparent), transparent 55%), var(--bg-2); display: grid; place-items: center; font: 800 clamp(80px, 12vw, 140px)/1 var(--display); letter-spacing: -.06em; color: color-mix(in srgb, var(--ink) 25%, transparent); overflow: hidden; }
+.me .sticker { position: absolute; padding: 10px 14px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line-2); font-size: 13.5px; font-weight: 600; box-shadow: var(--shadow); animation: float 6s ease-in-out infinite; white-space: nowrap; }
+.me .s1 { top: 8%; right: -2%; } .me .s2 { bottom: 10%; left: -4%; animation-delay: -3s; }
+@keyframes float { 50% { transform: translateY(-10px); } }
+.about blockquote { margin: 0 0 26px; font: 600 clamp(24px, 3vw, 36px)/1.25 var(--display); letter-spacing: -.03em; }
+.about p { color: var(--ink-2); font-size: 16.5px; margin: 0 0 16px; }
+.about strong { color: var(--ink); }
+
+/* promises */
+.promises { display: grid; gap: 16px; margin-top: 48px; }
+@media (min-width: 860px) { .promises { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.prom { border-radius: 24px; border: 1px solid var(--line); background: var(--glass); padding: 30px; position: relative; overflow: hidden; }
+.prom::after { content: ""; position: absolute; width: 220px; height: 220px; right: -80px; top: -80px; border-radius: 50%; background: var(--glow-a); filter: blur(50px); opacity: 0; transition: opacity .5s; }
+.prom:hover::after { opacity: 1; }
+.prom b { display: block; font: 800 44px/1 var(--display); margin-bottom: 18px; }
+.prom h3 { font: 700 21px var(--display); letter-spacing: -.02em; margin: 0 0 8px; }
+.prom p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+/* reviews */
+.reviews { display: grid; gap: 16px; margin-top: 48px; }
+@media (min-width: 860px) { .reviews { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.rev { border-radius: 24px; border: 1px solid var(--line); padding: 28px; background: var(--glass); display: flex; flex-direction: column; }
+.rev q { display: block; font-size: 17px; line-height: 1.55; flex: 1; margin-bottom: 22px; quotes: "“" "”"; }
+.rev .who { display: flex; align-items: center; gap: 12px; }
+.rev .who i { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); display: grid; place-items: center; color: #fff; font: 700 13px var(--display); font-style: normal; }
+.rev .who b { display: block; font-size: 15px; }
+.rev .who span { color: var(--muted); font-size: 13px; }
+
+/* contact */
+.contact { text-align: center; padding-bottom: 60px; }
+.contact h2 { font: 800 clamp(46px, 10vw, 150px)/.95 var(--display); letter-spacing: -.055em; margin: 0 0 24px; }
+.contact p { color: var(--ink-2); font-size: 18px; max-width: 32em; margin: 0 auto 36px; }
+.mail { display: inline-flex; align-items: center; gap: 14px; font: 700 clamp(18px, 2.6vw, 28px) var(--display); letter-spacing: -.02em; padding: 20px 32px; border-radius: 20px; border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(10px); transition: .35s var(--ease); max-width: 100%; overflow-wrap: anywhere; }
+.mail:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 20px 60px -20px var(--cyan); }
+.mail i { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; display: grid; place-items: center; font-style: normal; font-size: 16px; flex: none; }
+.soc { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.soc a { padding: 10px 18px; border-radius: 12px; border: 1px solid var(--line); color: var(--ink-2); font-size: 14px; transition: .3s; }
+.soc a:hover { color: var(--ink); border-color: var(--violet); }
+footer { border-top: 1px solid var(--line); padding: 28px 0 36px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+/* reveal */
+.js [data-r] { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); transition-delay: var(--d, 0s); }
+.js [data-r].in { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .aurora i, .grad, .me .ringz, .me .sticker { animation: none; }
+  .js [data-r] { opacity: 1; transform: none; filter: none; transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#top" class="logo"><i>FA</i>Faizi Ahmad</a>
+      <nav aria-label="Main">
+        <ul class="links" id="links">
+          <li><a href="#help">How I help</a></li>
+          <li><a href="#steps">Steps</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+      <div class="nav-r">
+        <button class="ib theme" id="theme" type="button" aria-label="Switch light or dark mode">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a href="#contact" class="btn glow say">Say hello</a>
+        <button class="ib menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" style="padding-bottom:40px">
+  <div class="wrap">
+    <span class="badge" data-r><b>✓</b>Open for new projects</span>
+    <h1 data-r style="--d:.05s">Keeping your business <span class="grad">safe</span>, in plain English.</h1>
+    <p class="lead" data-r style="--d:.1s">Hi, I'm Faizi. I check websites, apps and company systems for weak spots, fix what matters, and explain everything without the confusing jargon.</p>
+    <div class="hero-cta" data-r style="--d:.15s">
+      <a href="#contact" class="btn glow">Book a free chat →</a>
+      <a href="#help" class="btn">What can you do for me?</a>
+    </div>
+
+    <div class="compare" data-r style="--d:.2s">
+      <div class="browser"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
+      <div class="stage" id="stage">
+        <div class="layer before">
+          <div class="site-hd"><b>Your website today</b><span class="tag">4 weak spots</span></div>
+          <div class="blocks"><div class="blk big"></div><div class="blk w8"></div><div class="blk w6"></div><div class="blk"></div><div class="blk w8"></div></div>
+          <div class="list">
+            <div class="it"><em>!</em>Anyone can keep guessing passwords</div>
+            <div class="it"><em>!</em>Old test page still online</div>
+            <div class="it"><em>!</em>Customer files open to anyone</div>
+            <div class="it"><em>!</em>Software not updated in 2 years</div>
+            <div class="score"><b>38</b><span>/ 100 safety score</span></div>
+          </div>
+        </div>
+        <div class="layer after" aria-hidden="true">
+          <div class="site-hd"><b>After working with me</b><span class="tag">All fixed</span></div>
+          <div class="blocks"><div class="blk big"></div><div class="blk w8"></div><div class="blk w6"></div><div class="blk"></div><div class="blk w8"></div></div>
+          <div class="list">
+            <div class="it"><em>✓</em>Password guessing blocked</div>
+            <div class="it"><em>✓</em>Old test page removed</div>
+            <div class="it"><em>✓</em>Customer files private again</div>
+            <div class="it"><em>✓</em>Everything up to date</div>
+            <div class="score"><b>96</b><span>/ 100 safety score</span></div>
+          </div>
+        </div>
+        <div class="handle" aria-hidden="true"></div>
+        <div class="labels" aria-hidden="true"><span>Before</span><span>After</span></div>
+        <input type="range" id="slider" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+      </div>
+    </div>
+    <p class="drag-hint" data-r>↔ Drag the slider to see the difference</p>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <p data-r>Certified by leading industry bodies</p>
+    <div class="certs" data-r>
+      <span><b>CPENT</b>EC-Council</span>
+      <span><b>CRTP</b>Altered Security</span>
+      <span><b>CEH</b>EC-Council</span>
+      <span><b>CAP</b>The SecOps Group</span>
+      <span><b>CNSP</b>The SecOps Group</span>
+    </div>
+  </div>
+</div>
+
+<!-- Worry picker -->
+<section id="help">
+  <div class="wrap center">
+    <span class="kick" data-r>How I help</span>
+    <h2 class="h2" data-r>What's <span class="grad">worrying</span> you?</h2>
+    <p class="sub" data-r>Pick one and I'll tell you how I'd help.</p>
+    <div class="picker" data-r>
+      <div class="chips" role="tablist" aria-label="Pick a worry" id="chips">
+        <button class="chip" role="tab" aria-selected="true" data-k="site">🌐 My website or app</button>
+        <button class="chip" role="tab" aria-selected="false" data-k="data">🔒 My customer data</button>
+        <button class="chip" role="tab" aria-selected="false" data-k="team">👥 Is my team ready?</button>
+        <button class="chip" role="tab" aria-selected="false" data-k="busy">⏱️ Too much busywork</button>
+        <button class="chip" role="tab" aria-selected="false" data-k="bot">💬 Missing customer messages</button>
+      </div>
+      <div class="answer" id="answer" role="tabpanel" aria-live="polite">
+        <div>
+          <div class="ico" id="aIco">🌐</div>
+          <h3 id="aTitle">A full check-up for your website and apps</h3>
+          <p id="aText">I go through your website and apps by hand and find the weak spots automatic tools miss. You get a simple list of what to fix, starting with the most important.</p>
+          <a href="#contact" class="btn glow" id="aBtn">Book a check-up →</a>
+        </div>
+        <ul id="aList"><li>Every problem shown step by step</li><li>Ranked from "fix today" to "fix later"</li><li>Free re-check after you fix things</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section style="padding-top:0">
+  <div class="wrap svc-grid">
+    <div class="svc-side">
+      <span class="kick" data-r>What I do</span>
+      <h2 class="h2" data-r>Four services.<br><span class="grad">Zero jargon.</span></h2>
+      <p class="sub" data-r>Every job starts with a clear written agreement on what I'll check. Nothing risky happens without your OK.</p>
+      <a href="#contact" class="btn" style="margin-top:28px" data-r>Ask me anything →</a>
+    </div>
+    <div class="rows">
+      <div class="row" data-r><span class="n">01</span><h3>Website &amp; app check-ups</h3><p>A careful, hands-on review of your website, apps, office network and cloud setup, so you know exactly where you stand.</p><div class="pills"><span>Websites</span><span>Mobile apps</span><span>Office network</span><span>Cloud</span></div></div>
+      <div class="row" data-r><span class="n">02</span><h3>Team readiness check</h3><p>We pick a goal, like "could someone reach our customer data?", and test it for real. Then I show your team exactly where they could have caught it sooner.</p><div class="pills"><span>Real-life test</span><span>Team training</span><span>Clear next steps</span></div></div>
+      <div class="row" data-r><span class="n">03</span><h3>Security that runs itself</h3><p>Smart tools that sort through warnings and test results for your team, so they spend time on real problems instead of copy-pasting.</p><div class="pills"><span>Fewer false alarms</span><span>Auto reports</span><span>Hours saved</span></div></div>
+      <div class="row" data-r><span class="n">04</span><h3>AI assistants for business</h3><p>A WhatsApp assistant that answers customers day and night, and sends your best leads straight to you.</p><div class="pills"><span>24/7 replies</span><span>Lead follow-up</span><span>Works with your tools</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Numbers -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <!-- TODO: replace [X] with your real numbers -->
+    <div class="nums" data-r>
+      <div><strong class="grad">[X]+</strong><span>businesses helped</span></div>
+      <div><strong>[X] yrs</strong><span>of hands-on experience</span></div>
+      <div><strong>[X]+</strong><span>reports delivered</span></div>
+      <div><strong class="grad">&lt;24h</strong><span>reply time on weekdays</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section id="steps" style="padding-top:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick" data-r>How it works</span>
+      <h2 class="h2" data-r>Four simple <span class="grad">steps.</span></h2>
+    </div>
+    <div class="timeline" id="timeline">
+      <div class="tl-line"><i></i></div>
+      <div class="tl" data-r><div class="dot">1</div><h3>A quick chat</h3><p>You tell me what worries you. We agree in writing on what I'll check and when.</p><small>You get a clear plan &amp; price</small></div>
+      <div class="tl" data-r style="--d:.1s"><div class="dot" style="--d:.4s">2</div><h3>I look around</h3><p>I find everything you have online, including things you forgot about.</p><small>You get the full picture</small></div>
+      <div class="tl" data-r style="--d:.2s"><div class="dot" style="--d:.8s">3</div><h3>I check carefully</h3><p>By hand, and only what we agreed. If anything could affect your live site, I ask first.</p><small>You get proof of every problem</small></div>
+      <div class="tl" data-r style="--d:.3s"><div class="dot" style="--d:1.2s">4</div><h3>You get answers</h3><p>A short summary, easy fix steps for your developers, a call to walk through it, and a free re-check.</p><small>You get peace of mind</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="car-head">
+      <div>
+        <span class="kick" data-r>Projects</span>
+        <h2 class="h2" data-r>Free tools <span class="grad">I've built.</span></h2>
+        <p class="sub" data-r>Open-source helpers that take the boring parts out of security work.</p>
+      </div>
+      <div class="car-btns" data-r><button type="button" id="prev" aria-label="Previous project">←</button><button type="button" id="next" aria-label="Next project">→</button></div>
+    </div>
+    <div class="car" id="car">
+      <article class="proj">
+        <div class="top"><span>01</span><span>Python</span></div>
+        <div class="emoji" style="background:color-mix(in srgb,var(--violet) 22%,transparent)">🧭</div>
+        <h3>jevops</h3>
+        <p class="one">Sorts test results by what actually matters.</p>
+        <p>Reads hundreds of results, ranks each by how likely it's a real problem, and says when a person should take over.</p>
+        <div class="mini"><div class="r"><span>Private code folder public</span><span class="warn">Urgent</span></div><div class="r"><span>Admin page reachable</span><span class="warn">Urgent</span></div><div class="r"><span>Website icon</span><span class="info">Ignore</span></div></div>
+        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jevops" target="_blank" rel="noopener">View the code <span>↗</span></a>
+      </article>
+      <article class="proj">
+        <div class="top"><span>02</span><span>Python</span></div>
+        <div class="emoji" style="background:color-mix(in srgb,var(--cyan) 22%,transparent)">🔔</div>
+        <h3>jev-soc</h3>
+        <p class="one">Cuts through the noise so real problems get noticed.</p>
+        <p>Closes harmless warnings automatically, flags urgent ones straight away, and sends the rest to the right person.</p>
+        <div class="mini"><div class="r"><span>Warnings today</span><span>1,240</span></div><div class="r"><span>Closed automatically</span><span class="ok">1,228</span></div><div class="r"><span>Need attention now</span><span class="warn">2</span></div></div>
+        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jev-soc" target="_blank" rel="noopener">View the code <span>↗</span></a>
+      </article>
+      <article class="proj">
+        <div class="top"><span>03</span><span>Python</span></div>
+        <div class="emoji" style="background:color-mix(in srgb,var(--lime) 22%,transparent)">🪜</div>
+        <h3>jev-fsm</h3>
+        <p class="one">Step-by-step workflows that explain every decision.</p>
+        <p>Write your steps in a simple file. It decides when to move on, says how sure it is, and records why.</p>
+        <div class="mini"><div class="r"><span>Now</span><span>Research</span></div><div class="r"><span>Next step</span><span class="info">Check</span></div><div class="r"><span>How sure</span><span class="ok">88%</span></div></div>
+        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jev-fsm" target="_blank" rel="noopener">View the code <span>↗</span></a>
+      </article>
+      <article class="proj">
+        <div class="top"><span>04</span><span>Python</span></div>
+        <div class="emoji" style="background:color-mix(in srgb,var(--rose) 20%,transparent)">🎓</div>
+        <h3>jeval</h3>
+        <p class="one">Grades AI answers so bad ones never reach users.</p>
+        <p>Scores whether an AI's answer is on topic, complete, safe and polite, and can block a release when quality drops.</p>
+        <div class="mini"><div class="r"><span>On topic</span><span class="ok">92</span></div><div class="r"><span>Safe</span><span class="ok">97</span></div><div class="r"><span>Tone</span><span class="warn">64</span></div></div>
+        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jeval" target="_blank" rel="noopener">View the code <span>↗</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" style="padding-top:0">
+  <div class="wrap about">
+    <div class="me" data-r>
+      <div class="ringz" aria-hidden="true"></div>
+      <!-- TODO: replace "FA" with <img src="you.jpg" alt="Faizi Ahmad" style="width:100%;height:100%;object-fit:cover"> -->
+      <div class="pic">FA</div>
+      <div class="sticker s1">👋 Hi, I'm Faizi</div>
+      <div class="sticker s2">✓ 5 certifications</div>
+    </div>
+    <div>
+      <span class="kick" data-r>About me</span>
+      <blockquote data-r>"I used to protect companies from the inside. Now I help them see their <span class="grad">weak spots</span> from the outside."</blockquote>
+      <p data-r>I'm <strong>Faizi Ahmad</strong>, a security consultant. I check websites, apps, office networks and cloud setups, and help businesses fix what I find.</p>
+      <p data-r>I started in a <strong>company security team</strong>, reviewing warnings all day. That taught me what really matters, so my reports are short, clear and focused on the fixes that make the biggest difference.</p>
+      <p data-r>I also build <strong>AI tools</strong> that save teams hours every week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Promises -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick" data-r>My promise</span>
+      <h2 class="h2" data-r>Working with me <span class="grad">feels easy.</span></h2>
+    </div>
+    <div class="promises">
+      <div class="prom" data-r><b class="grad">01</b><h3>No confusing words</h3><p>Everything explained so anyone in your business can understand it.</p></div>
+      <div class="prom" data-r style="--d:.08s"><b class="grad">02</b><h3>Nothing breaks</h3><p>I check carefully and always ask before doing anything that could affect your live site.</p></div>
+      <div class="prom" data-r style="--d:.16s"><b class="grad">03</b><h3>Free re-check</h3><p>Once you've fixed things, I check again at no extra cost to make sure it worked.</p></div>
+    </div>
+
+    <!-- TODO: replace with real, approved testimonials -->
+    <div class="reviews">
+      <figure class="rev" data-r style="margin:0"><q>[Client quote: what the check-up found and how the report helped.]</q><figcaption class="who"><i>C1</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
+      <figure class="rev" data-r style="margin:0;--d:.08s"><q>[Client quote: how the readiness check helped the team.]</q><figcaption class="who"><i>C2</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
+      <figure class="rev" data-r style="margin:0;--d:.16s"><q>[Client quote: time saved by the AI assistant.]</q><figcaption class="who"><i>C3</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <span class="kick" data-r>Let's talk</span>
+    <h2 data-r>Let's make it <span class="grad">safe.</span></h2>
+    <p data-r>Tell me what you'd like checked. I'll reply within a day with honest advice, even if you don't hire me.</p>
+    <!-- TODO: set your email -->
+    <a class="mail" href="mailto:[YOUR EMAIL]" data-r><i>✉</i>[YOUR EMAIL]</a>
+    <div class="soc" data-r>
+      <a href="https://github.com/faiziahmad" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/[YOUR-HANDLE]" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://x.com/[YOUR-HANDLE]" target="_blank" rel="noopener">X ↗</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Faizi Ahmad</span>
+    <span>Made with care, in plain English.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  root.classList.add("js");
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* theme */
+  try { var t = localStorage.getItem("fa2-theme"); if (t) root.setAttribute("data-theme", t); } catch (e) {}
+  document.getElementById("theme").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("fa2-theme", next); } catch (e) {}
+  });
+
+  /* menu */
+  var menu = document.getElementById("menu"), links = document.getElementById("links");
+  menu.addEventListener("click", function () { var o = links.classList.toggle("open"); menu.setAttribute("aria-expanded", String(o)); });
+  links.addEventListener("click", function (e) { if (e.target.closest("a")) { links.classList.remove("open"); menu.setAttribute("aria-expanded", "false"); } });
+
+  /* before / after slider */
+  var stage = document.getElementById("stage"), slider = document.getElementById("slider");
+  function setPos(v) { stage.style.setProperty("--pos", v + "%"); }
+  slider.addEventListener("input", function () { setPos(slider.value); touched = true; });
+  var touched = false;
+  if (!reduced) {
+    // gentle hint animation until the visitor drags
+    var t0 = performance.now();
+    (function hint(now) {
+      if (touched) return;
+      var p = ((now - t0) / 1000);
+      if (p > 1.2) { var v = 50 + Math.sin((p - 1.2) * 1.4) * 22; setPos(v.toFixed(1)); slider.value = v; }
+      if (p < 7.5) requestAnimationFrame(hint); else { setPos(50); slider.value = 50; }
+    })(t0);
+  }
+
+  /* worry picker */
+  var data = {
+    site: { i: "🌐", t: "A full check-up for your website and apps", p: "I go through your website and apps by hand and find the weak spots automatic tools miss. You get a simple list of what to fix, starting with the most important.", l: ["Every problem shown step by step", "Ranked from \"fix today\" to \"fix later\"", "Free re-check after you fix things"], b: "Book a check-up →" },
+    data: { i: "🔒", t: "Make sure customer data stays private", p: "I look at where your customer information lives, who can reach it, and how it could slip out. Then I help you lock it down properly.", l: ["Find where private data is exposed", "Check who has access to what", "Simple steps to keep it private"], b: "Protect my data →" },
+    team: { i: "👥", t: "A real-life readiness check for your team", p: "We agree on a goal and I test it for real, the way it could actually happen. Then I sit down with your team and show where they could have caught it sooner.", l: ["Tests people, tools and processes", "Shows what was noticed and what wasn't", "Practical training for next time"], b: "Plan a readiness check →" },
+    busy: { i: "⏱️", t: "Let smart tools do the boring work", p: "I build tools that sort through warnings and test results for your team, write reports automatically, and only bring in a person when it really matters.", l: ["Fewer false alarms", "Reports written for you", "Hours saved every week"], b: "Automate it →" },
+    bot: { i: "💬", t: "An AI assistant that never misses a customer", p: "A WhatsApp assistant that answers questions day and night, spots serious buyers, and passes them straight to you.", l: ["Replies 24/7 in seconds", "Sends you your best leads", "Connects to tools you already use"], b: "Build my assistant →" }
+  };
+  var chips = document.querySelectorAll("#chips .chip"), ans = document.getElementById("answer");
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      chips.forEach(function (x) { x.setAttribute("aria-selected", String(x === c)); });
+      var d = data[c.getAttribute("data-k")];
+      document.getElementById("aIco").textContent = d.i;
+      document.getElementById("aTitle").textContent = d.t;
+      document.getElementById("aText").textContent = d.p;
+      document.getElementById("aBtn").textContent = d.b;
+      var ul = document.getElementById("aList"); ul.innerHTML = "";
+      d.l.forEach(function (s) { var li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
+      if (!reduced) { ans.classList.remove("swap"); void ans.offsetWidth; ans.classList.add("swap"); }
+    });
+  });
+
+  /* carousel */
+  var car = document.getElementById("car");
+  function step(dir) { var card = car.querySelector(".proj"); var w = card.getBoundingClientRect().width + 16; car.scrollBy({ left: dir * w, behavior: reduced ? "auto" : "smooth" }); }
+  document.getElementById("prev").addEventListener("click", function () { step(-1); });
+  document.getElementById("next").addEventListener("click", function () { step(1); });
+
+  /* reveal + timeline */
+  var tl = document.getElementById("timeline");
+  var els = document.querySelectorAll("[data-r]");
+  if ("IntersectionObserver" in window && !reduced) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    els.forEach(function (el) { io.observe(el); });
+    io.observe(tl);
+  } else {
+    els.forEach(function (el) { el.classList.add("in"); });
+    tl.classList.add("in");
+  }
+
+  /* active nav link */
+  var secs = ["help", "steps", "projects", "about"].map(function (id) { return document.getElementById(id); });
+  var navA = links.querySelectorAll("a");
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY + 140, cur = -1;
+    secs.forEach(function (s, i) { if (s.offsetTop <= y) cur = i; });
+    navA.forEach(function (a, i) { a.classList.toggle("active", i === cur); });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
