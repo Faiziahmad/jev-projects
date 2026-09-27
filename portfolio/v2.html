@@ -3,582 +3,569 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faizi Ahmad — Keeping Businesses Safe</title>
+<title>Faizi Ahmad — Security Consultant</title>
 <meta name="description" content="Faizi Ahmad checks websites, apps and company systems for weak spots, then explains in plain English exactly what to fix.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='16' fill='url(%23g)'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-weight='800' font-size='13' fill='%23fff'%3EFA%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111'/%3E%3Crect x='20' y='6' width='6' height='6' fill='%23ff4d00'/%3E%3Ctext x='5' y='25' font-family='monospace' font-weight='700' font-size='12' fill='%23e8e8e4'%3EFA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@700;900&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #07080c;
-  --bg-2: #0d0f16;
-  --glass: rgba(255,255,255,.045);
-  --glass-2: rgba(255,255,255,.08);
-  --line: rgba(255,255,255,.09);
-  --line-2: rgba(255,255,255,.18);
-  --ink: #eef0f6;
-  --ink-2: #b9bdcb;
-  --muted: #7f8496;
-  --violet: #7c5cff;
-  --cyan: #22d3ee;
-  --lime: #a3e635;
-  --rose: #fb7185;
-  --grad: linear-gradient(100deg, #a78bfa 0%, #22d3ee 50%, #a3e635 100%);
-  --glow-a: rgba(124,92,255,.35);
-  --glow-b: rgba(34,211,238,.22);
-  --shadow: 0 30px 80px -30px rgba(0,0,0,.9);
-  --display: "Sora", "Inter", system-ui, sans-serif;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --max: 1180px;
+  --bg: #e8e8e4;
+  --panel: #f2f2ef;
+  --ink: #111111;
+  --ink-2: #3c3c3a;
+  --muted: #7a7a76;
+  --line: rgba(17,17,17,.14);
+  --line-2: rgba(17,17,17,.32);
+  --sig: #ff4d00;
+  --sig-ink: #ffffff;
+  --ok: #0f8a4a;
+  --dot: rgba(17,17,17,.13);
+  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --led: "Doto", "Geist Mono", monospace;
+  --max: 1280px;
   --gutter: 16px;
-  --ease: cubic-bezier(.22,1,.36,1);
-  color-scheme: dark;
-}
-:root[data-theme="light"] {
-  --bg: #f5f6fb; --bg-2: #eceef6; --glass: rgba(255,255,255,.75); --glass-2: #ffffff;
-  --line: rgba(11,12,16,.09); --line-2: rgba(11,12,16,.18);
-  --ink: #0b0c10; --ink-2: #3a3e4c; --muted: #6a6f80;
-  --violet: #6246ea; --cyan: #0891b2; --lime: #4d7c0f; --rose: #e11d48;
-  --grad: linear-gradient(100deg, #6246ea 0%, #0891b2 55%, #4d7c0f 100%);
-  --glow-a: rgba(98,70,234,.18); --glow-b: rgba(8,145,178,.14);
-  --shadow: 0 30px 70px -34px rgba(20,24,40,.35);
+  --ease: cubic-bezier(.2,.9,.2,1);
   color-scheme: light;
 }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg: #f5f6fb; --bg-2: #eceef6; --glass: rgba(255,255,255,.75); --glass-2: #ffffff;
-    --line: rgba(11,12,16,.09); --line-2: rgba(11,12,16,.18);
-    --ink: #0b0c10; --ink-2: #3a3e4c; --muted: #6a6f80;
-    --violet: #6246ea; --cyan: #0891b2; --lime: #4d7c0f; --rose: #e11d48;
-    --grad: linear-gradient(100deg, #6246ea 0%, #0891b2 55%, #4d7c0f 100%);
-    --glow-a: rgba(98,70,234,.18); --glow-b: rgba(8,145,178,.14);
-    --shadow: 0 30px 70px -34px rgba(20,24,40,.35);
-    color-scheme: light;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0d0d; --panel: #151515; --ink: #ecece8; --ink-2: #bdbdb8; --muted: #7d7d78;
+    --line: rgba(236,236,232,.12); --line-2: rgba(236,236,232,.3); --ok: #3fd07f; --dot: rgba(236,236,232,.1);
+    color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0d0d; --panel: #151515; --ink: #ecece8; --ink-2: #bdbdb8; --muted: #7d7d78;
+  --line: rgba(236,236,232,.12); --line-2: rgba(236,236,232,.3); --ok: #3fd07f; --dot: rgba(236,236,232,.1);
+  color-scheme: dark;
 }
 @media (min-width: 768px) { :root { --gutter: 32px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 90px; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .4s, color .4s; }
-::selection { background: var(--violet); color: #fff; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background .3s, color .3s; }
+::selection { background: var(--sig); color: var(--sig-ink); }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+:focus-visible { outline: 2px solid var(--sig); outline-offset: 2px; }
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: shine 8s ease-in-out infinite alternate; }
-@keyframes shine { to { background-position: 100% 0; } }
+.hero-grid, .hero-bottom, .svc-grid, .proc, .idx .body, .about, .revs, .certs, .c-grid, .sec-hd { grid-template-columns: minmax(0, 1fr); }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.sig { color: var(--sig); }
+.sq { display: inline-block; width: 8px; height: 8px; background: var(--sig); vertical-align: 1px; }
 
-/* aurora background */
-.aurora { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .9; animation: drift 22s ease-in-out infinite alternate; }
-.aurora i:nth-child(1) { width: 620px; height: 620px; background: var(--glow-a); top: -220px; left: -160px; }
-.aurora i:nth-child(2) { width: 520px; height: 520px; background: var(--glow-b); top: 10%; right: -200px; animation-delay: -8s; }
-.aurora i:nth-child(3) { width: 440px; height: 440px; background: var(--glow-a); bottom: -220px; left: 30%; animation-delay: -14s; opacity: .5; }
-@keyframes drift { to { transform: translate(80px, 60px) scale(1.12); } }
-.grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000 20%, transparent 75%); opacity: .6; }
-
-/* buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 14px; font: 600 15px var(--sans); border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; transition: transform .3s var(--ease), border-color .3s, box-shadow .3s; }
-.btn:hover { transform: translateY(-2px); border-color: var(--cyan); }
-.btn.glow { position: relative; background: linear-gradient(135deg, var(--violet), #4f7cff 55%, var(--cyan)); border: 0; color: #fff; box-shadow: 0 10px 40px -10px var(--violet); }
-.btn.glow:hover { box-shadow: 0 14px 50px -8px var(--violet), 0 0 0 1px rgba(255,255,255,.25) inset; }
-
-/* nav */
-.nav { position: fixed; top: 14px; left: 0; right: 0; z-index: 50; }
-.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 16px; border-radius: 18px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 60%, transparent); backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%); }
-.logo { display: flex; align-items: center; gap: 10px; font: 700 16px var(--display); white-space: nowrap; }
-.logo i { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); display: grid; place-items: center; color: #fff; font: 800 11px var(--display); font-style: normal; }
-.links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
-.links a { display: block; padding: 8px 14px; border-radius: 10px; font-size: 14.5px; color: var(--ink-2); transition: color .2s, background .2s; }
-.links a:hover, .links a.active { color: var(--ink); background: var(--glass-2); }
-.nav-r { display: flex; gap: 8px; align-items: center; }
-.ib { width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); display: grid; place-items: center; cursor: pointer; }
-.ib svg { width: 18px; height: 18px; }
-.nav .btn { padding: 10px 16px; font-size: 14px; border-radius: 12px; }
-.theme .moon { display: none; }
-:root[data-theme="light"] .theme .sun { display: none; }
-:root[data-theme="light"] .theme .moon { display: block; }
-@media (prefers-color-scheme: light) { :root:not([data-theme]) .theme .sun { display: none; } :root:not([data-theme]) .theme .moon { display: block; } }
-.menu { display: none; }
-@media (max-width: 860px) {
-  .links { position: absolute; top: 64px; left: var(--gutter); right: var(--gutter); flex-direction: column; padding: 10px; border-radius: 18px; border: 1px solid var(--line); background: var(--bg-2); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: .25s var(--ease); }
-  .links.open { opacity: 1; visibility: visible; transform: none; }
-  .links a { font: 600 19px var(--display); padding: 14px; }
-  .menu { display: grid; }
-  .nav .say { display: none; }
+/* ---------- top bar ---------- */
+.bar { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.brand b { width: 26px; height: 26px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 500 11px var(--mono); position: relative; }
+.brand b::after { content: ""; position: absolute; top: 3px; right: 3px; width: 5px; height: 5px; background: var(--sig); }
+.menu-list { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.menu-list a { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); position: relative; padding: 4px 0; }
+.menu-list a span { color: var(--muted); margin-right: 6px; }
+.menu-list a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--sig); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.menu-list a:hover { color: var(--ink); }
+.menu-list a:hover::after { transform: scaleX(1); }
+.bar-r { display: flex; align-items: center; gap: 14px; }
+.clock { color: var(--muted); white-space: nowrap; }
+.tbtn { height: 32px; padding: 0 10px; border: 1px solid var(--line-2); background: transparent; cursor: pointer; font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+.tbtn i { width: 10px; height: 10px; border: 1.5px solid currentColor; border-radius: 50%; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+.tbtn:hover { border-color: var(--ink); }
+.burger { display: none; }
+@media (max-width: 900px) {
+  .clock { display: none; }
+  .menu-list { position: absolute; top: 56px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px var(--gutter) 16px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: .25s var(--ease); }
+  .menu-list.open { opacity: 1; visibility: visible; transform: none; }
+  .menu-list a { display: block; padding: 14px 0; font-size: 14px; border-bottom: 1px solid var(--line); }
+  .burger { display: inline-flex; }
 }
 
-/* hero */
-.hero { padding: 140px 0 60px; text-align: center; }
-.badge { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 8px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--glass); font-size: 13.5px; color: var(--ink-2); }
-.badge b { width: 22px; height: 22px; border-radius: 50%; background: var(--lime); display: grid; place-items: center; color: #0b0c10; font-size: 11px; }
-.hero h1 { font: 800 clamp(42px, 7.6vw, 98px)/1.02 var(--display); letter-spacing: -.045em; margin: 24px auto 22px; max-width: 13ch; }
-.hero .lead { font-size: clamp(17px, 1.7vw, 20px); color: var(--ink-2); max-width: 36em; margin: 0 auto 32px; }
-.hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+/* ---------- hero ---------- */
+.hero { border-bottom: 1px solid var(--line); position: relative; }
+.hero-grid { display: grid; min-height: calc(100svh - 56px); }
+@media (min-width: 1000px) { .hero-grid { grid-template-columns: 1.25fr .75fr; } }
+.hero-l { padding: clamp(40px, 7vw, 88px) 0 clamp(40px, 6vw, 72px); display: flex; flex-direction: column; justify-content: space-between; gap: 48px; position: relative; }
+@media (min-width: 1000px) { .hero-l { padding-right: 48px; border-right: 1px solid var(--line); } }
+.hero-l, .panel { min-width: 0; }
+.meta-row { display: flex; flex-wrap: wrap; gap: 8px 28px; color: var(--muted); }
+.meta-row .on { color: var(--ink); }
+.meta-row .on::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); margin-right: 8px; vertical-align: 1px; animation: blink 1.6s steps(1) infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.hero h1 { font: 600 clamp(46px, 8.4vw, 132px)/.9 var(--sans); letter-spacing: -.055em; margin: 0; }
+.hero h1 .row { display: block; overflow: hidden; }
+.hero h1 .row > span { display: inline-block; transition: transform 1.1s var(--ease); transition-delay: var(--d, 0s); }
+.js .hero h1 .row > span { transform: translateY(105%); }
+.js .hero.ready h1 .row > span { transform: none; }
+.hero h1 .sig-box { background: var(--sig); color: var(--sig-ink); padding: 0 .12em; margin-left: -.04em; }
+.hero-bottom { display: grid; gap: 28px; }
+@media (min-width: 700px) { .hero-bottom { grid-template-columns: 1fr auto; align-items: end; } }
+.hero-bottom p { margin: 0; font-size: clamp(17px, 1.5vw, 20px); color: var(--ink-2); max-width: 30em; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border: 1px solid var(--ink); font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; background: transparent; position: relative; overflow: hidden; isolation: isolate; transition: color .35s var(--ease); white-space: nowrap; }
+.btn::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleY(0); transform-origin: bottom; transition: transform .35s var(--ease); z-index: -1; }
+.btn:hover { color: var(--bg); }
+.btn:hover::before { transform: scaleY(1); }
+.btn.fill { background: var(--sig); border-color: var(--sig); color: var(--sig-ink); }
+.btn.fill::before { background: var(--ink); }
+.btn.fill:hover { color: var(--bg); }
+.coords { position: absolute; right: 0; top: clamp(40px, 7vw, 88px); color: var(--muted); text-align: right; display: none; }
+@media (min-width: 1000px) { .coords { display: block; right: 48px; } }
 
-/* before / after */
-.compare { position: relative; max-width: 940px; margin: 64px auto 0; border-radius: 24px; border: 1px solid var(--line-2); background: var(--bg-2); box-shadow: var(--shadow); overflow: hidden; user-select: none; -webkit-user-select: none; text-align: left; }
-.compare::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: linear-gradient(135deg, var(--violet), transparent 40%, transparent 60%, var(--cyan)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 5; }
-.browser { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--glass); position: relative; z-index: 4; }
-.browser i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); }
-.browser span { margin-left: 10px; flex: 1; max-width: 340px; padding: 5px 12px; border-radius: 8px; background: var(--glass-2); font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.stage { position: relative; aspect-ratio: 16 / 8.2; min-height: 330px; }
-.layer { position: absolute; inset: 0; padding: clamp(18px, 3vw, 32px); display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(14px, 2.4vw, 28px); }
-.layer.after { clip-path: inset(0 0 0 var(--pos, 50%)); background: var(--bg-2); }
-.layer.before { background: var(--bg-2); }
-.site-hd { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.site-hd b { font: 700 18px var(--display); }
-.site-hd .tag { font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px; white-space: nowrap; }
-.before .tag { background: color-mix(in srgb, var(--rose) 16%, transparent); color: var(--rose); }
-.after .tag { background: color-mix(in srgb, var(--lime) 18%, transparent); color: var(--lime); }
-.blocks { display: grid; gap: 10px; align-content: start; }
-.blk { height: 16px; border-radius: 6px; background: var(--glass-2); }
-.blk.w6 { width: 60%; } .blk.w8 { width: 80%; } .blk.big { height: 70px; border-radius: 12px; }
-.list { display: grid; gap: 9px; align-content: start; }
-.it { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); font-size: 13.5px; line-height: 1.35; }
-.it em { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; font-weight: 700; }
-.before .it em { background: color-mix(in srgb, var(--rose) 18%, transparent); color: var(--rose); }
-.after .it em { background: color-mix(in srgb, var(--lime) 20%, transparent); color: var(--lime); }
-.before .blk.big { background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--rose) 14%, transparent) 0 10px, transparent 10px 20px); border: 1px dashed color-mix(in srgb, var(--rose) 50%, transparent); }
-.after .blk.big { background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 30%, transparent), color-mix(in srgb, var(--cyan) 25%, transparent)); }
-.score { margin-top: 6px; display: flex; align-items: baseline; gap: 8px; }
-.score b { font: 800 40px/1 var(--display); letter-spacing: -.04em; }
-.before .score b { color: var(--rose); } .after .score b { color: var(--lime); }
-.score span { color: var(--muted); font-size: 13px; }
-.handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px; background: linear-gradient(var(--violet), var(--cyan)); z-index: 3; pointer-events: none; }
-.handle::after { content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; display: grid; place-items: center; font-size: 18px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--violet) 25%, transparent), 0 10px 30px rgba(0,0,0,.4); }
-.stage input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 4; margin: 0; }
-.labels { position: absolute; bottom: 14px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 3; pointer-events: none; font-size: 12px; font-weight: 600; }
-.labels span { padding: 5px 11px; border-radius: 999px; background: color-mix(in srgb, var(--bg) 70%, transparent); border: 1px solid var(--line); backdrop-filter: blur(6px); }
-.drag-hint { margin-top: 14px; color: var(--muted); font-size: 13.5px; }
-@media (max-width: 640px) {
-  .stage { aspect-ratio: auto; min-height: 400px; }
-  .layer { grid-template-columns: 1fr; }
-  .layer .blocks { display: none; }
-}
+/* instrument panel */
+.panel { padding: clamp(28px, 4vw, 48px) 0 clamp(40px, 5vw, 56px); display: flex; flex-direction: column; gap: 22px; }
+@media (min-width: 1000px) { .panel { padding-left: 40px; } }
+@media (max-width: 999px) { .panel { border-top: 1px solid var(--line); } }
+.p-head { display: flex; justify-content: space-between; color: var(--muted); }
+.readout { position: relative; background: var(--panel); border: 1px solid var(--line); padding: 22px 22px 18px; background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px); background-size: 8px 8px; }
+.readout .lbl { display: flex; justify-content: space-between; color: var(--muted); }
+.led { font: 900 clamp(88px, 11vw, 150px)/1 var(--led); letter-spacing: -.02em; margin: 14px 0 6px; font-variant-numeric: tabular-nums; }
+.led small { font: 500 14px var(--mono); color: var(--muted); letter-spacing: .04em; margin-left: 6px; }
+.segs { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; height: 18px; }
+.segs i { background: var(--line); transition: background .25s; }
+.segs i.on { background: var(--ink); }
+.segs.good i.on { background: var(--ok); }
+.segs.bad i.on { background: var(--sig); }
+.checks { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.checks li { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.checks .ix { color: var(--muted); }
+.checks .st { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; border: 1px solid var(--line-2); color: var(--muted); min-width: 74px; text-align: center; transition: .3s; }
+.checks li.found .st { border-color: var(--sig); color: var(--sig); }
+.checks li.fixed .st { border-color: var(--ok); color: var(--ok); }
+.p-foot { color: var(--muted); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 
-/* certs strip */
-.strip { padding: 56px 0 0; }
-.strip p { text-align: center; color: var(--muted); font-size: 13.5px; margin: 0 0 18px; }
-.certs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.certs span { padding: 10px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); font-size: 13.5px; color: var(--ink-2); transition: border-color .3s, color .3s, transform .3s var(--ease); }
-.certs span b { font-family: var(--display); color: var(--ink); margin-right: 6px; }
-.certs span:hover { border-color: var(--violet); transform: translateY(-2px); }
+/* ---------- ticker ---------- */
+.ticker { border-bottom: 1px solid var(--line); overflow: hidden; background: var(--ink); color: var(--bg); }
+.ticker-t { display: flex; width: max-content; animation: tick 40s linear infinite; }
+.ticker span { font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 14px 22px; white-space: nowrap; }
+.ticker span::before { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--sig); margin-right: 22px; vertical-align: 2px; }
+@keyframes tick { to { transform: translateX(-50%); } }
 
-/* sections */
-section { padding: clamp(90px, 12vw, 150px) 0; }
-.kick { display: inline-block; font: 600 13px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
-.h2 { font: 800 clamp(34px, 5.2vw, 64px)/1.05 var(--display); letter-spacing: -.04em; margin: 0; }
-.sub { color: var(--ink-2); font-size: 17.5px; max-width: 34em; margin: 18px 0 0; }
-.center { text-align: center; }
-.center .sub { margin-left: auto; margin-right: auto; }
+/* ---------- section frame ---------- */
+.sec { border-bottom: 1px solid var(--line); }
+.sec-hd { display: grid; gap: 18px; padding: clamp(64px, 9vw, 120px) 0 clamp(36px, 5vw, 56px); }
+@media (min-width: 900px) { .sec-hd { grid-template-columns: 200px 1fr 1fr; align-items: end; } }
+.sec-hd .mono { color: var(--muted); align-self: start; padding-top: 12px; }
+.sec-hd h2 { font: 600 clamp(38px, 5.4vw, 76px)/.95 var(--sans); letter-spacing: -.05em; margin: 0; }
+.sec-hd p { margin: 0; color: var(--ink-2); font-size: 17px; max-width: 30em; }
 
-/* worry picker */
-.picker { margin-top: 44px; }
-.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.chip { padding: 12px 18px; border-radius: 14px; border: 1px solid var(--line-2); background: var(--glass); cursor: pointer; font-weight: 500; font-size: 15px; transition: .3s var(--ease); display: inline-flex; align-items: center; gap: 8px; }
-.chip:hover { border-color: var(--cyan); }
-.chip[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.answer { position: relative; margin: 28px auto 0; max-width: 860px; border-radius: 24px; border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); padding: clamp(24px, 4vw, 40px); display: grid; gap: 24px; text-align: left; box-shadow: var(--shadow); }
-@media (min-width: 760px) { .answer { grid-template-columns: 1.2fr .8fr; align-items: center; } }
-.answer .ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 24px; background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 40%, transparent), color-mix(in srgb, var(--cyan) 30%, transparent)); margin-bottom: 16px; }
-.answer h3 { font: 700 clamp(24px, 2.6vw, 30px)/1.15 var(--display); letter-spacing: -.03em; margin: 0 0 10px; }
-.answer p { color: var(--ink-2); margin: 0; }
-.answer ul { list-style: none; margin: 0; padding: 20px; border-radius: 16px; background: var(--glass-2); border: 1px solid var(--line); display: grid; gap: 10px; font-size: 15px; }
-.answer li { display: flex; gap: 10px; }
-.answer li::before { content: "✓"; color: var(--lime); font-weight: 700; }
-.answer .btn { margin-top: 20px; }
-.answer.swap { animation: pop .5s var(--ease); }
-@keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+/* services grid */
+.svc-grid { display: grid; border-top: 1px solid var(--line); }
+@media (min-width: 760px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .svc-grid { grid-template-columns: repeat(4, 1fr); } }
+.svc { position: relative; padding: 28px 24px 32px; border-bottom: 1px solid var(--line); min-height: 420px; display: flex; flex-direction: column; transition: background .35s var(--ease), color .35s var(--ease); }
+@media (min-width: 760px) { .svc:nth-child(odd) { border-right: 1px solid var(--line); } }
+@media (min-width: 1100px) { .svc { border-right: 1px solid var(--line); border-bottom: 0; } .svc:last-child { border-right: 0; } }
+.svc:hover { background: var(--ink); color: var(--bg); }
+.svc:hover p, .svc:hover li { color: color-mix(in srgb, var(--bg) 75%, transparent); }
+.svc .top { display: flex; justify-content: space-between; color: var(--muted); }
+.svc:hover .top { color: color-mix(in srgb, var(--bg) 55%, transparent); }
+.svc .pix { width: 56px; height: 56px; margin: 40px 0 28px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.svc .pix i { background: transparent; }
+.svc .pix i.f { background: currentColor; }
+.svc .pix i.s { background: var(--sig); }
+.svc h3 { font: 600 26px/1.05 var(--sans); letter-spacing: -.035em; margin: 0 0 12px; }
+.svc p { color: var(--ink-2); margin: 0 0 20px; font-size: 15px; transition: color .35s; }
+.svc ul { list-style: none; margin: 0 0 24px; padding: 0; }
+.svc li { font: 400 13px var(--mono); color: var(--ink-2); padding: 7px 0; border-top: 1px dashed var(--line-2); transition: color .35s; }
+.svc li::before { content: "+ "; color: var(--sig); }
+.svc .go { margin-top: auto; font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+.svc .go i { font-style: normal; transition: transform .35s var(--ease); }
+.svc:hover .go i { transform: translateX(6px); color: var(--sig); }
 
-/* services rows */
-.svc-grid { display: grid; gap: clamp(32px, 5vw, 72px); }
-@media (min-width: 960px) { .svc-grid { grid-template-columns: .8fr 1.2fr; } .svc-side { position: sticky; top: 120px; align-self: start; } }
-.rows { border-top: 1px solid var(--line-2); }
-.row { border-bottom: 1px solid var(--line-2); padding: 28px 0; display: grid; grid-template-columns: 56px 1fr; gap: 6px 18px; position: relative; }
-.row::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--ease); }
-.row:hover::before { transform: scaleX(1); }
-.row .n { font: 600 14px var(--display); color: var(--muted); padding-top: 8px; }
-.row h3 { font: 700 clamp(24px, 3vw, 36px)/1.1 var(--display); letter-spacing: -.035em; margin: 0; transition: transform .45s var(--ease); }
-.row:hover h3 { transform: translateX(8px); }
-.row p { grid-column: 2; margin: 8px 0 0; color: var(--ink-2); max-width: 36em; }
-.row .pills { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.row .pills span { font-size: 12.5px; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); }
+/* process */
+.proc { display: grid; border-top: 1px solid var(--line); }
+@media (min-width: 900px) { .proc { grid-template-columns: repeat(4, 1fr); } }
+.step { padding: 26px 24px 40px; border-bottom: 1px solid var(--line); position: relative; }
+@media (min-width: 900px) { .step { border-bottom: 0; border-right: 1px solid var(--line); } .step:last-child { border-right: 0; } }
+.step .num { font: 900 72px/1 var(--led); color: var(--line-2); transition: color .6s; transition-delay: var(--d, 0s); }
+.proc.in .step .num { color: var(--ink); }
+.proc.in .step:last-child .num { color: var(--sig); }
+.step .prog { height: 3px; background: var(--line); margin: 22px 0 22px; position: relative; overflow: hidden; }
+.step .prog::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .8s var(--ease); transition-delay: var(--d, 0s); }
+.proc.in .step .prog::after { transform: scaleX(1); }
+.step h3 { font: 600 22px/1.15 var(--sans); letter-spacing: -.03em; margin: 0 0 10px; }
+.step p { margin: 0 0 18px; color: var(--ink-2); font-size: 15px; }
+.step .out { color: var(--muted); }
+.step .out b { color: var(--ink); font-weight: 500; }
 
-/* numbers */
-.nums { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
-@media (min-width: 860px) { .nums { grid-template-columns: repeat(4, minmax(0,1fr)); } }
-.nums div { background: var(--bg); padding: clamp(22px, 3vw, 34px); }
-.nums strong { display: block; font: 800 clamp(34px, 4.4vw, 54px)/1 var(--display); letter-spacing: -.04em; }
-.nums span { display: block; margin-top: 10px; color: var(--muted); font-size: 14.5px; }
-
-/* timeline */
-.timeline { position: relative; margin-top: 60px; display: grid; gap: 18px; }
-@media (min-width: 900px) { .timeline { grid-template-columns: repeat(4, minmax(0,1fr)); } }
-.tl-line { display: none; }
-@media (min-width: 900px) {
-  .tl-line { display: block; position: absolute; top: 27px; left: 28px; right: 28px; height: 2px; background: var(--line-2); }
-  .tl-line i { display: block; height: 100%; width: 0; background: var(--grad); transition: width 1.8s var(--ease); box-shadow: 0 0 16px var(--cyan); }
-  .timeline.in .tl-line i { width: 100%; }
-}
-.tl { position: relative; }
-.tl .dot { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--bg); display: grid; place-items: center; font: 700 15px var(--display); position: relative; z-index: 1; margin-bottom: 22px; transition: .5s var(--ease); transition-delay: var(--d, 0s); }
-.timeline.in .tl .dot { background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; border-color: transparent; box-shadow: 0 0 0 6px color-mix(in srgb, var(--violet) 18%, transparent); }
-.tl h3 { font: 700 21px/1.2 var(--display); letter-spacing: -.02em; margin: 0 0 8px; }
-.tl p { color: var(--ink-2); margin: 0; font-size: 15.5px; }
-.tl small { display: inline-block; margin-top: 14px; font-size: 13px; color: var(--cyan); font-weight: 600; }
-
-/* projects carousel */
-.car-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
-.car-btns { display: flex; gap: 8px; }
-.car-btns button { width: 48px; height: 48px; border-radius: 14px; border: 1px solid var(--line-2); background: var(--glass); cursor: pointer; font-size: 18px; transition: border-color .3s; }
-.car-btns button:hover { border-color: var(--cyan); }
-.car { display: grid; grid-auto-flow: column; grid-auto-columns: min(88%, 440px); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 44px var(--gutter) 20px; margin: 0 calc(-1 * var(--gutter)); scrollbar-width: none; overscroll-behavior-x: contain; }
-.car::-webkit-scrollbar { display: none; }
-.proj { scroll-snap-align: start; border-radius: 24px; border: 1px solid var(--line); background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 26px; display: flex; flex-direction: column; transition: transform .45s var(--ease), border-color .3s; min-height: 470px; }
-.proj:hover { transform: translateY(-6px); border-color: var(--line-2); }
-.proj .top { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 13px; }
-.proj .emoji { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 26px; margin: 22px 0 18px; }
-.proj h3 { font: 800 30px/1 var(--display); letter-spacing: -.04em; margin: 0 0 10px; }
-.proj .one { font-size: 18px; font-weight: 600; margin: 0 0 12px; line-height: 1.35; }
-.proj p { color: var(--ink-2); margin: 0 0 18px; font-size: 15px; }
-.mini { margin-top: auto; border-radius: 16px; background: var(--glass-2); border: 1px solid var(--line); padding: 14px; font-size: 13px; display: grid; gap: 8px; }
-.mini .r { display: flex; justify-content: space-between; gap: 10px; }
-.mini .r span:last-child { font-weight: 600; }
-.ok { color: var(--lime); } .warn { color: var(--rose); } .info { color: var(--cyan); }
-.proj a { margin-top: 18px; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; }
-.proj a span { transition: transform .3s var(--ease); }
-.proj:hover a span { transform: translate(3px, -3px); }
+/* projects index */
+.idx { border-top: 1px solid var(--line); }
+.idx details { border-bottom: 1px solid var(--line); }
+.idx summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 48px 1fr 32px; gap: 16px; align-items: center; padding: 26px 0; transition: padding .35s var(--ease); }
+@media (min-width: 900px) { .idx summary { grid-template-columns: 80px 260px 1fr 180px 40px; } }
+.idx summary::-webkit-details-marker { display: none; }
+.idx summary:hover { padding-left: 12px; }
+.idx .n { color: var(--muted); }
+.idx .name { font: 600 clamp(28px, 3.4vw, 44px)/1 var(--sans); letter-spacing: -.045em; }
+.idx .desc { color: var(--ink-2); font-size: 16px; display: none; }
+.idx .kind { color: var(--muted); display: none; }
+@media (min-width: 900px) { .idx .desc, .idx .kind { display: block; } }
+.idx .pm { width: 32px; height: 32px; border: 1px solid var(--line-2); display: grid; place-items: center; font: 500 16px var(--mono); transition: transform .35s var(--ease), background .3s, color .3s, border-color .3s; }
+.idx details[open] .pm { transform: rotate(45deg); background: var(--sig); color: var(--sig-ink); border-color: var(--sig); }
+.idx summary:hover .pm { border-color: var(--ink); }
+.idx .body { display: grid; gap: 24px; padding: 0 0 36px; }
+@media (min-width: 900px) { .idx .body { grid-template-columns: 80px 1fr 1fr; } .idx .body > :first-child { grid-column: 2; } }
+.idx .body p { margin: 0 0 18px; color: var(--ink-2); font-size: 16px; max-width: 34em; }
+.idx .body .mobile-desc { font-weight: 500; color: var(--ink); }
+@media (min-width: 900px) { .idx .body .mobile-desc { display: none; } }
+.idx .link { font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; border-bottom: 2px solid var(--sig); padding-bottom: 2px; }
+.screen { background: var(--panel); border: 1px solid var(--line); padding: 18px; font: 400 13px/1.5 var(--mono); background-image: radial-gradient(var(--dot) 1.2px, transparent 1.4px); background-size: 8px 8px; }
+.screen .h { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+.screen .r { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+.screen .r:last-child { border-bottom: 0; }
+.screen .hi { color: var(--sig); } .screen .ok { color: var(--ok); } .screen .lo { color: var(--muted); }
 
 /* about */
-.about { display: grid; gap: clamp(32px, 5vw, 64px); align-items: center; }
-@media (min-width: 900px) { .about { grid-template-columns: .85fr 1.15fr; } }
-.me { position: relative; aspect-ratio: 1; max-width: 440px; width: 100%; margin: 0 auto; }
-.me .ringz { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, var(--violet), var(--cyan), var(--lime), var(--violet)); animation: spin 14s linear infinite; padding: 3px; -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px)); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.me .pic { position: absolute; inset: 14px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--violet) 55%, transparent), transparent 60%), radial-gradient(circle at 75% 80%, color-mix(in srgb, var(--cyan) 45%, transparent), transparent 55%), var(--bg-2); display: grid; place-items: center; font: 800 clamp(80px, 12vw, 140px)/1 var(--display); letter-spacing: -.06em; color: color-mix(in srgb, var(--ink) 25%, transparent); overflow: hidden; }
-.me .sticker { position: absolute; padding: 10px 14px; border-radius: 14px; background: var(--bg-2); border: 1px solid var(--line-2); font-size: 13.5px; font-weight: 600; box-shadow: var(--shadow); animation: float 6s ease-in-out infinite; white-space: nowrap; }
-.me .s1 { top: 8%; right: -2%; } .me .s2 { bottom: 10%; left: -4%; animation-delay: -3s; }
-@keyframes float { 50% { transform: translateY(-10px); } }
-.about blockquote { margin: 0 0 26px; font: 600 clamp(24px, 3vw, 36px)/1.25 var(--display); letter-spacing: -.03em; }
-.about p { color: var(--ink-2); font-size: 16.5px; margin: 0 0 16px; }
-.about strong { color: var(--ink); }
+.about { display: grid; border-top: 1px solid var(--line); }
+@media (min-width: 900px) { .about { grid-template-columns: 5fr 7fr; } }
+.photo { position: relative; min-height: 460px; border-bottom: 1px solid var(--line); background: var(--panel); background-image: radial-gradient(var(--dot) 1.4px, transparent 1.6px); background-size: 10px 10px; overflow: hidden; }
+@media (min-width: 900px) { .photo { border-bottom: 0; border-right: 1px solid var(--line); } }
+.photo .big { position: absolute; inset: 0; display: grid; place-items: center; font: 900 clamp(140px, 20vw, 260px)/1 var(--led); color: var(--ink); opacity: .9; }
+.photo .cross { position: absolute; width: 22px; height: 22px; border: 0 solid var(--ink); }
+.photo .c1 { top: 18px; left: 18px; border-top-width: 2px; border-left-width: 2px; }
+.photo .c2 { top: 18px; right: 18px; border-top-width: 2px; border-right-width: 2px; }
+.photo .c3 { bottom: 18px; left: 18px; border-bottom-width: 2px; border-left-width: 2px; }
+.photo .c4 { bottom: 18px; right: 18px; border-bottom-width: 2px; border-right-width: 2px; }
+.photo .cap { position: absolute; left: 18px; right: 18px; bottom: 50px; display: flex; justify-content: space-between; color: var(--muted); }
+.photo .tagx { position: absolute; top: 50px; left: 18px; background: var(--sig); color: var(--sig-ink); padding: 4px 8px; }
+.about-t { padding: clamp(28px, 5vw, 64px) 0 clamp(40px, 6vw, 72px); }
+@media (min-width: 900px) { .about-t { padding-left: 56px; } }
+.about-t .lead { font: 500 clamp(26px, 3vw, 40px)/1.15 var(--sans); letter-spacing: -.035em; margin: 0 0 32px; }
+.about-t .lead mark { background: var(--sig); color: var(--sig-ink); padding: 0 .1em; }
+.about-t p { color: var(--ink-2); font-size: 16.5px; margin: 0 0 16px; max-width: 36em; }
+.about-t strong { color: var(--ink); font-weight: 600; }
+.spec { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); margin-top: 36px; }
+.spec div { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.spec div:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--line); }
+.spec div:nth-child(even) { padding-left: 16px; }
+.spec dt { color: var(--muted); }
+.spec dd { margin: 4px 0 0; font-weight: 500; }
 
-/* promises */
-.promises { display: grid; gap: 16px; margin-top: 48px; }
-@media (min-width: 860px) { .promises { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-.prom { border-radius: 24px; border: 1px solid var(--line); background: var(--glass); padding: 30px; position: relative; overflow: hidden; }
-.prom::after { content: ""; position: absolute; width: 220px; height: 220px; right: -80px; top: -80px; border-radius: 50%; background: var(--glow-a); filter: blur(50px); opacity: 0; transition: opacity .5s; }
-.prom:hover::after { opacity: 1; }
-.prom b { display: block; font: 800 44px/1 var(--display); margin-bottom: 18px; }
-.prom h3 { font: 700 21px var(--display); letter-spacing: -.02em; margin: 0 0 8px; }
-.prom p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+/* numbers */
+.nums { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+@media (min-width: 900px) { .nums { grid-template-columns: repeat(4, 1fr); } }
+.nums div { padding: 28px 24px 36px; border-bottom: 1px solid var(--line); }
+.nums div:nth-child(odd) { border-right: 1px solid var(--line); }
+@media (min-width: 900px) { .nums div { border-bottom: 0; border-right: 1px solid var(--line); } .nums div:last-child { border-right: 0; } }
+.nums strong { display: block; font: 900 clamp(52px, 6vw, 88px)/1 var(--led); margin: 18px 0 10px; }
+.nums span { color: var(--ink-2); font-size: 15px; }
+.nums .mono { color: var(--muted); }
+
+/* certs */
+.certs { display: grid; border-top: 1px solid var(--line); }
+@media (min-width: 700px) { .certs { grid-template-columns: repeat(5, 1fr); } }
+.cert { padding: 22px 24px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+@media (min-width: 700px) { .cert { border-bottom: 0; border-right: 1px solid var(--line); flex-direction: column; } .cert:last-child { border-right: 0; } }
+.cert b { font: 600 22px var(--sans); letter-spacing: -.03em; }
+.cert span { color: var(--muted); }
 
 /* reviews */
-.reviews { display: grid; gap: 16px; margin-top: 48px; }
-@media (min-width: 860px) { .reviews { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-.rev { border-radius: 24px; border: 1px solid var(--line); padding: 28px; background: var(--glass); display: flex; flex-direction: column; }
-.rev q { display: block; font-size: 17px; line-height: 1.55; flex: 1; margin-bottom: 22px; quotes: "“" "”"; }
-.rev .who { display: flex; align-items: center; gap: 12px; }
-.rev .who i { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); display: grid; place-items: center; color: #fff; font: 700 13px var(--display); font-style: normal; }
-.rev .who b { display: block; font-size: 15px; }
-.rev .who span { color: var(--muted); font-size: 13px; }
+.revs { display: grid; border-top: 1px solid var(--line); }
+@media (min-width: 900px) { .revs { grid-template-columns: repeat(3, 1fr); } }
+.rev { padding: 30px 24px 36px; border-bottom: 1px solid var(--line); margin: 0; display: flex; flex-direction: column; }
+@media (min-width: 900px) { .rev { border-bottom: 0; border-right: 1px solid var(--line); } .rev:last-child { border-right: 0; } }
+.rev blockquote { margin: 0 0 28px; font: 500 20px/1.35 var(--sans); letter-spacing: -.02em; flex: 1; }
+.rev blockquote::before { content: "“"; display: block; font: 900 56px/0.6 var(--led); color: var(--sig); margin-bottom: 18px; }
+.rev figcaption { color: var(--muted); }
+.rev figcaption b { color: var(--ink); font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 15px; font-weight: 600; display: block; }
 
 /* contact */
-.contact { text-align: center; padding-bottom: 60px; }
-.contact h2 { font: 800 clamp(46px, 10vw, 150px)/.95 var(--display); letter-spacing: -.055em; margin: 0 0 24px; }
-.contact p { color: var(--ink-2); font-size: 18px; max-width: 32em; margin: 0 auto 36px; }
-.mail { display: inline-flex; align-items: center; gap: 14px; font: 700 clamp(18px, 2.6vw, 28px) var(--display); letter-spacing: -.02em; padding: 20px 32px; border-radius: 20px; border: 1px solid var(--line-2); background: var(--glass); backdrop-filter: blur(10px); transition: .35s var(--ease); max-width: 100%; overflow-wrap: anywhere; }
-.mail:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 20px 60px -20px var(--cyan); }
-.mail i { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--violet), var(--cyan)); color: #fff; display: grid; place-items: center; font-style: normal; font-size: 16px; flex: none; }
-.soc { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
-.soc a { padding: 10px 18px; border-radius: 12px; border: 1px solid var(--line); color: var(--ink-2); font-size: 14px; transition: .3s; }
-.soc a:hover { color: var(--ink); border-color: var(--violet); }
-footer { border-top: 1px solid var(--line); padding: 28px 0 36px; color: var(--muted); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.contact { padding: clamp(80px, 12vw, 160px) 0 clamp(48px, 6vw, 80px); }
+.contact .mono { color: var(--muted); }
+.contact h2 { font: 600 clamp(64px, 15vw, 240px)/.82 var(--sans); letter-spacing: -.07em; margin: 28px 0 40px; }
+.contact h2 .sig-box { background: var(--sig); color: var(--sig-ink); padding: 0 .06em; }
+.c-grid { display: grid; gap: 28px; border-top: 1px solid var(--line); padding-top: 28px; }
+@media (min-width: 900px) { .c-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.c-grid p { margin: 0; color: var(--ink-2); font-size: 17px; max-width: 26em; }
+.mail { font: 600 clamp(22px, 2.6vw, 32px)/1.1 var(--sans); letter-spacing: -.035em; border-bottom: 3px solid var(--sig); padding-bottom: 4px; overflow-wrap: anywhere; transition: color .3s; }
+.mail:hover { color: var(--sig); }
+.socials { list-style: none; margin: 0; padding: 0; }
+.socials a { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font: 500 13px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.socials a:hover { color: var(--sig); }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 20px; padding-bottom: 28px; color: var(--muted); }
 
 /* reveal */
-.js [data-r] { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease); transition-delay: var(--d, 0s); }
-.js [data-r].in { opacity: 1; transform: none; filter: none; }
+.js [data-r] { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
+.js [data-r].in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .aurora i, .grad, .me .ringz, .me .sticker { animation: none; }
-  .js [data-r] { opacity: 1; transform: none; filter: none; transition: none; }
+  .ticker-t, .meta-row .on::before { animation: none; }
+  .js [data-r] { opacity: 1; transform: none; transition: none; }
+  .js .hero h1 .row > span { transform: none; transition: none; }
 }
 </style>
 </head>
 <body>
-<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="grid-bg" aria-hidden="true"></div>
 
-<header class="nav">
+<header class="bar">
   <div class="wrap">
-    <div class="nav-in">
-      <a href="#top" class="logo"><i>FA</i>Faizi Ahmad</a>
-      <nav aria-label="Main">
-        <ul class="links" id="links">
-          <li><a href="#help">How I help</a></li>
-          <li><a href="#steps">Steps</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </nav>
-      <div class="nav-r">
-        <button class="ib theme" id="theme" type="button" aria-label="Switch light or dark mode">
-          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        </button>
-        <a href="#contact" class="btn glow say">Say hello</a>
-        <button class="ib menu" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="links">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
-        </button>
-      </div>
+    <a href="#top" class="brand"><b>FA</b>Faizi Ahmad</a>
+    <nav aria-label="Main">
+      <ul class="menu-list" id="menu">
+        <li><a href="#services"><span>01</span>Services</a></li>
+        <li><a href="#process"><span>02</span>Process</a></li>
+        <li><a href="#projects"><span>03</span>Projects</a></li>
+        <li><a href="#about"><span>04</span>About</a></li>
+        <li><a href="#contact"><span>05</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="bar-r">
+      <span class="mono clock" id="clock">--:--:--</span>
+      <button class="tbtn" id="theme" type="button" aria-label="Switch light or dark mode"><i></i>Mode</button>
+      <button class="tbtn burger" id="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
     </div>
   </div>
 </header>
 
 <main id="top">
 
-<section class="hero" style="padding-bottom:40px">
-  <div class="wrap">
-    <span class="badge" data-r><b>✓</b>Open for new projects</span>
-    <h1 data-r style="--d:.05s">Keeping your business <span class="grad">safe</span>, in plain English.</h1>
-    <p class="lead" data-r style="--d:.1s">Hi, I'm Faizi. I check websites, apps and company systems for weak spots, fix what matters, and explain everything without the confusing jargon.</p>
-    <div class="hero-cta" data-r style="--d:.15s">
-      <a href="#contact" class="btn glow">Book a free chat →</a>
-      <a href="#help" class="btn">What can you do for me?</a>
-    </div>
-
-    <div class="compare" data-r style="--d:.2s">
-      <div class="browser"><i></i><i></i><i></i><span>yourbusiness.com</span></div>
-      <div class="stage" id="stage">
-        <div class="layer before">
-          <div class="site-hd"><b>Your website today</b><span class="tag">4 weak spots</span></div>
-          <div class="blocks"><div class="blk big"></div><div class="blk w8"></div><div class="blk w6"></div><div class="blk"></div><div class="blk w8"></div></div>
-          <div class="list">
-            <div class="it"><em>!</em>Anyone can keep guessing passwords</div>
-            <div class="it"><em>!</em>Old test page still online</div>
-            <div class="it"><em>!</em>Customer files open to anyone</div>
-            <div class="it"><em>!</em>Software not updated in 2 years</div>
-            <div class="score"><b>38</b><span>/ 100 safety score</span></div>
-          </div>
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-l">
+      <div class="meta-row mono">
+        <span class="on">Available for new projects</span>
+        <span>Security consultant</span>
+        <span>Est. [YEAR]</span>
+      </div>
+      <div class="coords mono" id="coords" aria-hidden="true">X 0000<br>Y 0000</div>
+      <h1>
+        <span class="row"><span>Your business,</span></span>
+        <span class="row"><span style="--d:.08s">checked for</span></span>
+        <span class="row"><span style="--d:.16s"><span class="sig-box">weak spots.</span></span></span>
+      </h1>
+      <div class="hero-bottom">
+        <p>I'm Faizi. I check websites, apps and company systems for weak spots, then explain in plain English exactly what to fix, and in what order.</p>
+        <div class="actions">
+          <a href="#contact" class="btn fill">Book a free call <span>→</span></a>
+          <a href="#services" class="btn">Services</a>
         </div>
-        <div class="layer after" aria-hidden="true">
-          <div class="site-hd"><b>After working with me</b><span class="tag">All fixed</span></div>
-          <div class="blocks"><div class="blk big"></div><div class="blk w8"></div><div class="blk w6"></div><div class="blk"></div><div class="blk w8"></div></div>
-          <div class="list">
-            <div class="it"><em>✓</em>Password guessing blocked</div>
-            <div class="it"><em>✓</em>Old test page removed</div>
-            <div class="it"><em>✓</em>Customer files private again</div>
-            <div class="it"><em>✓</em>Everything up to date</div>
-            <div class="score"><b>96</b><span>/ 100 safety score</span></div>
-          </div>
-        </div>
-        <div class="handle" aria-hidden="true"></div>
-        <div class="labels" aria-hidden="true"><span>Before</span><span>After</span></div>
-        <input type="range" id="slider" min="0" max="100" value="50" aria-label="Drag to compare before and after">
       </div>
     </div>
-    <p class="drag-hint" data-r>↔ Drag the slider to see the difference</p>
+
+    <div class="panel" aria-label="Example check-up">
+      <div class="p-head mono"><span>Live example</span><span>yourbusiness.com</span></div>
+      <div class="readout">
+        <div class="lbl mono"><span>Safety score</span><span id="state">Checking</span></div>
+        <div class="led"><span id="score">000</span><small>/100</small></div>
+        <div class="segs" id="segs" aria-hidden="true"></div>
+      </div>
+      <ul class="checks" id="checks">
+        <li><span class="ix mono">01</span><span>Password guessing on login page</span><span class="st">Waiting</span></li>
+        <li><span class="ix mono">02</span><span>Old test website left online</span><span class="st">Waiting</span></li>
+        <li><span class="ix mono">03</span><span>Customer files open to anyone</span><span class="st">Waiting</span></li>
+        <li><span class="ix mono">04</span><span>Out-of-date software</span><span class="st">Waiting</span></li>
+      </ul>
+      <div class="p-foot mono"><span><span class="sq"></span>&nbsp; Found → fixed → re-checked</span><span>Free re-check included</span></div>
+    </div>
   </div>
 </section>
 
-<div class="strip">
-  <div class="wrap">
-    <p data-r>Certified by leading industry bodies</p>
-    <div class="certs" data-r>
-      <span><b>CPENT</b>EC-Council</span>
-      <span><b>CRTP</b>Altered Security</span>
-      <span><b>CEH</b>EC-Council</span>
-      <span><b>CAP</b>The SecOps Group</span>
-      <span><b>CNSP</b>The SecOps Group</span>
-    </div>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-t">
+    <span>Websites</span><span>Mobile apps</span><span>Office networks</span><span>Cloud setups</span><span>Team readiness</span><span>AI automation</span><span>Plain-English reports</span><span>Free re-check</span>
+    <span>Websites</span><span>Mobile apps</span><span>Office networks</span><span>Cloud setups</span><span>Team readiness</span><span>AI automation</span><span>Plain-English reports</span><span>Free re-check</span>
   </div>
 </div>
 
-<!-- Worry picker -->
-<section id="help">
-  <div class="wrap center">
-    <span class="kick" data-r>How I help</span>
-    <h2 class="h2" data-r>What's <span class="grad">worrying</span> you?</h2>
-    <p class="sub" data-r>Pick one and I'll tell you how I'd help.</p>
-    <div class="picker" data-r>
-      <div class="chips" role="tablist" aria-label="Pick a worry" id="chips">
-        <button class="chip" role="tab" aria-selected="true" data-k="site">🌐 My website or app</button>
-        <button class="chip" role="tab" aria-selected="false" data-k="data">🔒 My customer data</button>
-        <button class="chip" role="tab" aria-selected="false" data-k="team">👥 Is my team ready?</button>
-        <button class="chip" role="tab" aria-selected="false" data-k="busy">⏱️ Too much busywork</button>
-        <button class="chip" role="tab" aria-selected="false" data-k="bot">💬 Missing customer messages</button>
-      </div>
-      <div class="answer" id="answer" role="tabpanel" aria-live="polite">
-        <div>
-          <div class="ico" id="aIco">🌐</div>
-          <h3 id="aTitle">A full check-up for your website and apps</h3>
-          <p id="aText">I go through your website and apps by hand and find the weak spots automatic tools miss. You get a simple list of what to fix, starting with the most important.</p>
-          <a href="#contact" class="btn glow" id="aBtn">Book a check-up →</a>
-        </div>
-        <ul id="aList"><li>Every problem shown step by step</li><li>Ranked from "fix today" to "fix later"</li><li>Free re-check after you fix things</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Services -->
-<section style="padding-top:0">
-  <div class="wrap svc-grid">
-    <div class="svc-side">
-      <span class="kick" data-r>What I do</span>
-      <h2 class="h2" data-r>Four services.<br><span class="grad">Zero jargon.</span></h2>
-      <p class="sub" data-r>Every job starts with a clear written agreement on what I'll check. Nothing risky happens without your OK.</p>
-      <a href="#contact" class="btn" style="margin-top:28px" data-r>Ask me anything →</a>
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="mono" data-r>01 — Services</span>
+      <h2 data-r>Four things<br>I do well.</h2>
+      <p data-r>Every job starts with a written agreement on what I'll check. Nothing risky happens without your OK.</p>
     </div>
-    <div class="rows">
-      <div class="row" data-r><span class="n">01</span><h3>Website &amp; app check-ups</h3><p>A careful, hands-on review of your website, apps, office network and cloud setup, so you know exactly where you stand.</p><div class="pills"><span>Websites</span><span>Mobile apps</span><span>Office network</span><span>Cloud</span></div></div>
-      <div class="row" data-r><span class="n">02</span><h3>Team readiness check</h3><p>We pick a goal, like "could someone reach our customer data?", and test it for real. Then I show your team exactly where they could have caught it sooner.</p><div class="pills"><span>Real-life test</span><span>Team training</span><span>Clear next steps</span></div></div>
-      <div class="row" data-r><span class="n">03</span><h3>Security that runs itself</h3><p>Smart tools that sort through warnings and test results for your team, so they spend time on real problems instead of copy-pasting.</p><div class="pills"><span>Fewer false alarms</span><span>Auto reports</span><span>Hours saved</span></div></div>
-      <div class="row" data-r><span class="n">04</span><h3>AI assistants for business</h3><p>A WhatsApp assistant that answers customers day and night, and sends your best leads straight to you.</p><div class="pills"><span>24/7 replies</span><span>Lead follow-up</span><span>Works with your tools</span></div></div>
+  </div>
+  <div class="wrap" style="padding:0">
+    <div class="svc-grid">
+      <a href="#contact" class="svc" data-r>
+        <div class="top mono"><span>S-01</span><span>Most popular</span></div>
+        <div class="pix" data-pix="0010100011111001000100100010011111000101000"></div>
+        <h3>Website &amp; app check-ups</h3>
+        <p>A careful, hands-on review of your website, apps, network and cloud. I find what automatic tools miss.</p>
+        <ul><li>Every problem, step by step</li><li>Ranked by urgency</li><li>A fix for each one</li></ul>
+        <span class="go">Book a check-up <i>→</i></span>
+      </a>
+      <a href="#contact" class="svc" data-r style="--d:.05s">
+        <div class="top mono"><span>S-02</span><span>Whole company</span></div>
+        <div class="pix" data-pix="0011100010001010101011000110101010001000111000"></div>
+        <h3>Team readiness check</h3>
+        <p>We pick a goal, like "could someone reach our customer data?", and I test it for real. Then I show your team where they could have caught it.</p>
+        <ul><li>Tests people and processes</li><li>What was noticed, what wasn't</li><li>Training for next time</li></ul>
+        <span class="go">Plan a check <i>→</i></span>
+      </a>
+      <a href="#contact" class="svc" data-r style="--d:.1s">
+        <div class="top mono"><span>S-03</span><span>For teams</span></div>
+        <div class="pix" data-pix="1000001010001000101000001000001010001000101000001"></div>
+        <h3>Security that runs itself</h3>
+        <p>Smart tools that sort warnings and test results for your team, so people only step in when it matters.</p>
+        <ul><li>Fewer false alarms</li><li>Reports written for you</li><li>Hours saved weekly</li></ul>
+        <span class="go">Automate it <i>→</i></span>
+      </a>
+      <a href="#contact" class="svc" data-r style="--d:.15s">
+        <div class="top mono"><span>S-04</span><span>Small business</span></div>
+        <div class="pix" data-pix="0111110100000110101011000001100000101111100100000"></div>
+        <h3>AI assistants for business</h3>
+        <p>A WhatsApp assistant that answers customers day and night, and sends your best leads straight to you.</p>
+        <ul><li>Replies 24/7</li><li>Spots serious buyers</li><li>Works with your tools</li></ul>
+        <span class="go">Build one <i>→</i></span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Numbers -->
-<section style="padding-top:0">
+<!-- Process -->
+<section class="sec" id="process">
   <div class="wrap">
-    <!-- TODO: replace [X] with your real numbers -->
-    <div class="nums" data-r>
-      <div><strong class="grad">[X]+</strong><span>businesses helped</span></div>
-      <div><strong>[X] yrs</strong><span>of hands-on experience</span></div>
-      <div><strong>[X]+</strong><span>reports delivered</span></div>
-      <div><strong class="grad">&lt;24h</strong><span>reply time on weekdays</span></div>
+    <div class="sec-hd">
+      <span class="mono" data-r>02 — Process</span>
+      <h2 data-r>Four steps.<br>No surprises.</h2>
+      <p data-r>You always know what I'm doing and what you'll get at the end of each step.</p>
     </div>
   </div>
-</section>
-
-<!-- Steps -->
-<section id="steps" style="padding-top:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick" data-r>How it works</span>
-      <h2 class="h2" data-r>Four simple <span class="grad">steps.</span></h2>
-    </div>
-    <div class="timeline" id="timeline">
-      <div class="tl-line"><i></i></div>
-      <div class="tl" data-r><div class="dot">1</div><h3>A quick chat</h3><p>You tell me what worries you. We agree in writing on what I'll check and when.</p><small>You get a clear plan &amp; price</small></div>
-      <div class="tl" data-r style="--d:.1s"><div class="dot" style="--d:.4s">2</div><h3>I look around</h3><p>I find everything you have online, including things you forgot about.</p><small>You get the full picture</small></div>
-      <div class="tl" data-r style="--d:.2s"><div class="dot" style="--d:.8s">3</div><h3>I check carefully</h3><p>By hand, and only what we agreed. If anything could affect your live site, I ask first.</p><small>You get proof of every problem</small></div>
-      <div class="tl" data-r style="--d:.3s"><div class="dot" style="--d:1.2s">4</div><h3>You get answers</h3><p>A short summary, easy fix steps for your developers, a call to walk through it, and a free re-check.</p><small>You get peace of mind</small></div>
+  <div class="wrap" style="padding:0">
+    <div class="proc" id="proc">
+      <div class="step"><div class="num">01</div><div class="prog"></div><h3>A quick chat</h3><p>You tell me what worries you. We agree in writing on what I'll check, and when.</p><div class="out mono">You get: <b>a plan and a price</b></div></div>
+      <div class="step" style="--d:.3s"><div class="num" style="--d:.3s">02</div><div class="prog"></div><h3>I look around</h3><p>I find everything you have online, including the things you forgot about.</p><div class="out mono">You get: <b>the full picture</b></div></div>
+      <div class="step" style="--d:.6s"><div class="num" style="--d:.6s">03</div><div class="prog"></div><h3>I check carefully</h3><p>By hand, and only what we agreed. If anything could affect your live site, I ask first.</p><div class="out mono">You get: <b>proof of each problem</b></div></div>
+      <div class="step" style="--d:.9s"><div class="num" style="--d:.9s">04</div><div class="prog"></div><h3>You get answers</h3><p>A short summary, clear fix steps, a call to walk through it, and a free re-check.</p><div class="out mono">You get: <b>peace of mind</b></div></div>
     </div>
   </div>
 </section>
 
 <!-- Projects -->
-<section id="projects" style="padding-top:0">
+<section class="sec" id="projects">
   <div class="wrap">
-    <div class="car-head">
-      <div>
-        <span class="kick" data-r>Projects</span>
-        <h2 class="h2" data-r>Free tools <span class="grad">I've built.</span></h2>
-        <p class="sub" data-r>Open-source helpers that take the boring parts out of security work.</p>
-      </div>
-      <div class="car-btns" data-r><button type="button" id="prev" aria-label="Previous project">←</button><button type="button" id="next" aria-label="Next project">→</button></div>
+    <div class="sec-hd">
+      <span class="mono" data-r>03 — Projects</span>
+      <h2 data-r>Tools I've<br>built.</h2>
+      <p data-r>Free, open-source helpers that take the boring parts out of security work. Tap one to see more.</p>
     </div>
-    <div class="car" id="car">
-      <article class="proj">
-        <div class="top"><span>01</span><span>Python</span></div>
-        <div class="emoji" style="background:color-mix(in srgb,var(--violet) 22%,transparent)">🧭</div>
-        <h3>jevops</h3>
-        <p class="one">Sorts test results by what actually matters.</p>
-        <p>Reads hundreds of results, ranks each by how likely it's a real problem, and says when a person should take over.</p>
-        <div class="mini"><div class="r"><span>Private code folder public</span><span class="warn">Urgent</span></div><div class="r"><span>Admin page reachable</span><span class="warn">Urgent</span></div><div class="r"><span>Website icon</span><span class="info">Ignore</span></div></div>
-        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jevops" target="_blank" rel="noopener">View the code <span>↗</span></a>
-      </article>
-      <article class="proj">
-        <div class="top"><span>02</span><span>Python</span></div>
-        <div class="emoji" style="background:color-mix(in srgb,var(--cyan) 22%,transparent)">🔔</div>
-        <h3>jev-soc</h3>
-        <p class="one">Cuts through the noise so real problems get noticed.</p>
-        <p>Closes harmless warnings automatically, flags urgent ones straight away, and sends the rest to the right person.</p>
-        <div class="mini"><div class="r"><span>Warnings today</span><span>1,240</span></div><div class="r"><span>Closed automatically</span><span class="ok">1,228</span></div><div class="r"><span>Need attention now</span><span class="warn">2</span></div></div>
-        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jev-soc" target="_blank" rel="noopener">View the code <span>↗</span></a>
-      </article>
-      <article class="proj">
-        <div class="top"><span>03</span><span>Python</span></div>
-        <div class="emoji" style="background:color-mix(in srgb,var(--lime) 22%,transparent)">🪜</div>
-        <h3>jev-fsm</h3>
-        <p class="one">Step-by-step workflows that explain every decision.</p>
-        <p>Write your steps in a simple file. It decides when to move on, says how sure it is, and records why.</p>
-        <div class="mini"><div class="r"><span>Now</span><span>Research</span></div><div class="r"><span>Next step</span><span class="info">Check</span></div><div class="r"><span>How sure</span><span class="ok">88%</span></div></div>
-        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jev-fsm" target="_blank" rel="noopener">View the code <span>↗</span></a>
-      </article>
-      <article class="proj">
-        <div class="top"><span>04</span><span>Python</span></div>
-        <div class="emoji" style="background:color-mix(in srgb,var(--rose) 20%,transparent)">🎓</div>
-        <h3>jeval</h3>
-        <p class="one">Grades AI answers so bad ones never reach users.</p>
-        <p>Scores whether an AI's answer is on topic, complete, safe and polite, and can block a release when quality drops.</p>
-        <div class="mini"><div class="r"><span>On topic</span><span class="ok">92</span></div><div class="r"><span>Safe</span><span class="ok">97</span></div><div class="r"><span>Tone</span><span class="warn">64</span></div></div>
-        <a href="https://github.com/faiziahmad/jev-projects/tree/main/jeval" target="_blank" rel="noopener">View the code <span>↗</span></a>
-      </article>
+    <div class="idx" data-r>
+      <details open>
+        <summary><span class="n mono">P-01</span><span class="name">jevops</span><span class="desc">Sorts test results by what actually matters.</span><span class="kind mono">For testers</span><span class="pm">+</span></summary>
+        <div class="body">
+          <div><p class="mobile-desc">Sorts test results by what actually matters.</p><p>Security tests produce hundreds of results. jevops reads them, ranks each one by how likely it is to be a real problem, suggests what to do next, and says when a person should take over.</p><a class="link" href="https://github.com/faiziahmad/jev-projects/tree/main/jevops" target="_blank" rel="noopener">View the code ↗</a></div>
+          <div class="screen"><div class="h"><span>Look at these first</span><span>48 results</span></div><div class="r"><span>Private code folder public</span><span class="hi">Urgent 97%</span></div><div class="r"><span>Settings file backup</span><span class="hi">Urgent 95%</span></div><div class="r"><span>Database open to everyone</span><span>High 86%</span></div><div class="r"><span>Website icon</span><span class="lo">Ignore</span></div></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="n mono">P-02</span><span class="name">jev-soc</span><span class="desc">Cuts through the noise so real problems get noticed.</span><span class="kind mono">For teams</span><span class="pm">+</span></summary>
+        <div class="body">
+          <div><p class="mobile-desc">Cuts through the noise so real problems get noticed.</p><p>Built from my time reviewing security warnings all day. It closes the harmless ones automatically, flags urgent ones straight away, and sends the rest to the right person.</p><a class="link" href="https://github.com/faiziahmad/jev-projects/tree/main/jev-soc" target="_blank" rel="noopener">View the code ↗</a></div>
+          <div class="screen"><div class="h"><span>Today</span><span>Live</span></div><div class="r"><span>Warnings received</span><span>1,240</span></div><div class="r"><span>Closed automatically</span><span class="ok">1,228</span></div><div class="r"><span>Sent to a person</span><span>10</span></div><div class="r"><span>Need attention now</span><span class="hi">2</span></div></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="n mono">P-03</span><span class="name">jev-fsm</span><span class="desc">Step-by-step workflows that explain every decision.</span><span class="kind mono">For any team</span><span class="pm">+</span></summary>
+        <div class="body">
+          <div><p class="mobile-desc">Step-by-step workflows that explain every decision.</p><p>You write the steps in a simple file. It decides when to move to the next one, says how sure it is, and keeps a record of why. Useful for projects, support tickets and compliance.</p><a class="link" href="https://github.com/faiziahmad/jev-projects/tree/main/jev-fsm" target="_blank" rel="noopener">View the code ↗</a></div>
+          <div class="screen"><div class="h"><span>Workflow</span><span>Logged</span></div><div class="r"><span>Research → Check → Test → Report</span><span></span></div><div class="r"><span>Next step</span><span class="hi">Check</span></div><div class="r"><span>How sure</span><span class="ok">88%</span></div><div class="r"><span>Reason saved</span><span>Yes</span></div></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="n mono">P-04</span><span class="name">jeval</span><span class="desc">Grades AI answers so bad ones never reach users.</span><span class="kind mono">For AI builders</span><span class="pm">+</span></summary>
+        <div class="body">
+          <div><p class="mobile-desc">Grades AI answers so bad ones never reach users.</p><p>Checks if an AI's answer is on topic, complete, safe and polite, gives it a score, and can block a release when quality drops, at a fraction of the usual cost.</p><a class="link" href="https://github.com/faiziahmad/jev-projects/tree/main/jeval" target="_blank" rel="noopener">View the code ↗</a></div>
+          <div class="screen"><div class="h"><span>Report card</span><span class="ok">Pass</span></div><div class="r"><span>On topic</span><span>92</span></div><div class="r"><span>Complete</span><span>81</span></div><div class="r"><span>Safe</span><span class="ok">97</span></div><div class="r"><span>Tone</span><span class="hi">64</span></div></div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- About -->
-<section id="about" style="padding-top:0">
-  <div class="wrap about">
-    <div class="me" data-r>
-      <div class="ringz" aria-hidden="true"></div>
-      <!-- TODO: replace "FA" with <img src="you.jpg" alt="Faizi Ahmad" style="width:100%;height:100%;object-fit:cover"> -->
-      <div class="pic">FA</div>
-      <div class="sticker s1">👋 Hi, I'm Faizi</div>
-      <div class="sticker s2">✓ 5 certifications</div>
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="mono" data-r>04 — About</span>
+      <h2 data-r>Both sides<br>of the job.</h2>
+      <p data-r>From protecting companies on the inside, to checking them from the outside.</p>
     </div>
-    <div>
-      <span class="kick" data-r>About me</span>
-      <blockquote data-r>"I used to protect companies from the inside. Now I help them see their <span class="grad">weak spots</span> from the outside."</blockquote>
-      <p data-r>I'm <strong>Faizi Ahmad</strong>, a security consultant. I check websites, apps, office networks and cloud setups, and help businesses fix what I find.</p>
-      <p data-r>I started in a <strong>company security team</strong>, reviewing warnings all day. That taught me what really matters, so my reports are short, clear and focused on the fixes that make the biggest difference.</p>
-      <p data-r>I also build <strong>AI tools</strong> that save teams hours every week.</p>
+  </div>
+  <div class="wrap" style="padding:0">
+    <div class="about">
+      <div class="photo" data-r>
+        <!-- TODO: add your photo: <img src="you.jpg" alt="Faizi Ahmad" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1)"> -->
+        <div class="big" aria-hidden="true">FA</div>
+        <span class="cross c1"></span><span class="cross c2"></span><span class="cross c3"></span><span class="cross c4"></span>
+        <span class="tagx mono">Faizi Ahmad</span>
+        <div class="cap mono"><span>Security consultant</span><span>Photo</span></div>
+      </div>
+      <div class="about-t" style="padding-right:var(--gutter)">
+        <p class="lead" data-r>I started out <mark>protecting</mark> companies. Now they hire me to find their weak spots first.</p>
+        <p data-r>I'm <strong>Faizi Ahmad</strong>. I check websites, apps, office networks and cloud setups, and help businesses fix what I find.</p>
+        <p data-r>I began in a <strong>company security team</strong>, reviewing warnings all day. That taught me what really matters, so my reports are short, clear and focused on the fixes that make the biggest difference.</p>
+        <p data-r>I also build <strong>AI tools</strong> that save teams hours every week.</p>
+        <dl class="spec" data-r>
+          <div><dt class="mono">Main work</dt><dd>Security check-ups</dd></div>
+          <div><dt class="mono">Background</dt><dd>In-house security team</dd></div>
+          <div><dt class="mono">Speciality</dt><dd>Company networks</dd></div>
+          <div><dt class="mono">Also building</dt><dd>AI automation</dd></div>
+        </dl>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Promises -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick" data-r>My promise</span>
-      <h2 class="h2" data-r>Working with me <span class="grad">feels easy.</span></h2>
+<!-- Numbers + certs -->
+<section class="sec">
+  <div class="wrap" style="padding:0">
+    <!-- TODO: replace [X] with your real numbers -->
+    <div class="nums" style="border-top:0">
+      <div data-r><span class="mono">N-01</span><strong>[X]+</strong><span>businesses helped</span></div>
+      <div data-r style="--d:.05s"><span class="mono">N-02</span><strong>[X]</strong><span>years of experience</span></div>
+      <div data-r style="--d:.1s"><span class="mono">N-03</span><strong>[X]+</strong><span>reports delivered</span></div>
+      <div data-r style="--d:.15s"><span class="mono">N-04</span><strong class="sig">24h</strong><span>reply time on weekdays</span></div>
     </div>
-    <div class="promises">
-      <div class="prom" data-r><b class="grad">01</b><h3>No confusing words</h3><p>Everything explained so anyone in your business can understand it.</p></div>
-      <div class="prom" data-r style="--d:.08s"><b class="grad">02</b><h3>Nothing breaks</h3><p>I check carefully and always ask before doing anything that could affect your live site.</p></div>
-      <div class="prom" data-r style="--d:.16s"><b class="grad">03</b><h3>Free re-check</h3><p>Once you've fixed things, I check again at no extra cost to make sure it worked.</p></div>
+    <div class="certs">
+      <div class="cert" data-r><b>CPENT</b><span class="mono">EC-Council</span></div>
+      <div class="cert" data-r style="--d:.04s"><b>CRTP</b><span class="mono">Altered Security</span></div>
+      <div class="cert" data-r style="--d:.08s"><b>CEH</b><span class="mono">EC-Council</span></div>
+      <div class="cert" data-r style="--d:.12s"><b>CAP</b><span class="mono">The SecOps Group</span></div>
+      <div class="cert" data-r style="--d:.16s"><b>CNSP</b><span class="mono">The SecOps Group</span></div>
     </div>
+  </div>
+</section>
 
+<!-- Reviews -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd">
+      <span class="mono" data-r>Reviews</span>
+      <h2 data-r>What clients<br>say.</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0">
     <!-- TODO: replace with real, approved testimonials -->
-    <div class="reviews">
-      <figure class="rev" data-r style="margin:0"><q>[Client quote: what the check-up found and how the report helped.]</q><figcaption class="who"><i>C1</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
-      <figure class="rev" data-r style="margin:0;--d:.08s"><q>[Client quote: how the readiness check helped the team.]</q><figcaption class="who"><i>C2</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
-      <figure class="rev" data-r style="margin:0;--d:.16s"><q>[Client quote: time saved by the AI assistant.]</q><figcaption class="who"><i>C3</i><div><b>[Client Name]</b><span>[Title], [Company]</span></div></figcaption></figure>
+    <div class="revs">
+      <figure class="rev" data-r><blockquote>[Client quote: what the check-up found and how the report helped.]</blockquote><figcaption class="mono"><b>[Client Name]</b>[Title], [Company]</figcaption></figure>
+      <figure class="rev" data-r style="--d:.05s"><blockquote>[Client quote: how the readiness check helped the team.]</blockquote><figcaption class="mono"><b>[Client Name]</b>[Title], [Company]</figcaption></figure>
+      <figure class="rev" data-r style="--d:.1s"><blockquote>[Client quote: time saved by the AI assistant.]</blockquote><figcaption class="mono"><b>[Client Name]</b>[Title], [Company]</figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- Contact -->
-<section class="contact" id="contact" style="padding-top:0">
+<section class="contact" id="contact">
   <div class="wrap">
-    <span class="kick" data-r>Let's talk</span>
-    <h2 data-r>Let's make it <span class="grad">safe.</span></h2>
-    <p data-r>Tell me what you'd like checked. I'll reply within a day with honest advice, even if you don't hire me.</p>
-    <!-- TODO: set your email -->
-    <a class="mail" href="mailto:[YOUR EMAIL]" data-r><i>✉</i>[YOUR EMAIL]</a>
-    <div class="soc" data-r>
-      <a href="https://github.com/faiziahmad" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/[YOUR-HANDLE]" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://x.com/[YOUR-HANDLE]" target="_blank" rel="noopener">X ↗</a>
+    <span class="mono" data-r>05 — Contact</span>
+    <h2 data-r>Say<br><span class="sig-box">hello.</span></h2>
+    <div class="c-grid" data-r>
+      <p>Tell me what you'd like checked. I'll reply within a day with honest advice, even if you don't hire me.</p>
+      <div>
+        <!-- TODO: set your email -->
+        <a class="mail" href="mailto:[YOUR EMAIL]">[YOUR EMAIL]</a>
+      </div>
+      <ul class="socials">
+        <li><a href="https://github.com/faiziahmad" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/[YOUR-HANDLE]" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+        <li><a href="https://x.com/[YOUR-HANDLE]" target="_blank" rel="noopener">X <span>↗</span></a></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -586,9 +573,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap mono">
     <span>© <span id="year">2026</span> Faizi Ahmad</span>
-    <span>Made with care, in plain English.</span>
+    <span>Plain English. Real fixes.</span>
+    <a href="#top">Back to top ↑</a>
   </div>
 </footer>
 
@@ -601,86 +589,95 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   document.getElementById("year").textContent = new Date().getFullYear();
 
   /* theme */
-  try { var t = localStorage.getItem("fa2-theme"); if (t) root.setAttribute("data-theme", t); } catch (e) {}
+  try { var th = localStorage.getItem("fa3-theme"); if (th) root.setAttribute("data-theme", th); } catch (e) {}
   document.getElementById("theme").addEventListener("click", function () {
-    var cur = root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    var cur = root.getAttribute("data-theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     var next = cur === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
-    try { localStorage.setItem("fa2-theme", next); } catch (e) {}
+    try { localStorage.setItem("fa3-theme", next); } catch (e) {}
   });
 
   /* menu */
-  var menu = document.getElementById("menu"), links = document.getElementById("links");
-  menu.addEventListener("click", function () { var o = links.classList.toggle("open"); menu.setAttribute("aria-expanded", String(o)); });
-  links.addEventListener("click", function (e) { if (e.target.closest("a")) { links.classList.remove("open"); menu.setAttribute("aria-expanded", "false"); } });
+  var burger = document.getElementById("burger"), menu = document.getElementById("menu");
+  burger.addEventListener("click", function () { var o = menu.classList.toggle("open"); burger.setAttribute("aria-expanded", String(o)); });
+  menu.addEventListener("click", function (e) { if (e.target.closest("a")) { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
 
-  /* before / after slider */
-  var stage = document.getElementById("stage"), slider = document.getElementById("slider");
-  function setPos(v) { stage.style.setProperty("--pos", v + "%"); }
-  slider.addEventListener("input", function () { setPos(slider.value); touched = true; });
-  var touched = false;
-  if (!reduced) {
-    // gentle hint animation until the visitor drags
-    var t0 = performance.now();
-    (function hint(now) {
-      if (touched) return;
-      var p = ((now - t0) / 1000);
-      if (p > 1.2) { var v = 50 + Math.sin((p - 1.2) * 1.4) * 22; setPos(v.toFixed(1)); slider.value = v; }
-      if (p < 7.5) requestAnimationFrame(hint); else { setPos(50); slider.value = 50; }
-    })(t0);
-  }
+  /* clock */
+  var clock = document.getElementById("clock");
+  function tickClock() { var d = new Date(); clock.textContent = "Local " + d.toTimeString().slice(0, 8); }
+  tickClock(); setInterval(tickClock, 1000);
 
-  /* worry picker */
-  var data = {
-    site: { i: "🌐", t: "A full check-up for your website and apps", p: "I go through your website and apps by hand and find the weak spots automatic tools miss. You get a simple list of what to fix, starting with the most important.", l: ["Every problem shown step by step", "Ranked from \"fix today\" to \"fix later\"", "Free re-check after you fix things"], b: "Book a check-up →" },
-    data: { i: "🔒", t: "Make sure customer data stays private", p: "I look at where your customer information lives, who can reach it, and how it could slip out. Then I help you lock it down properly.", l: ["Find where private data is exposed", "Check who has access to what", "Simple steps to keep it private"], b: "Protect my data →" },
-    team: { i: "👥", t: "A real-life readiness check for your team", p: "We agree on a goal and I test it for real, the way it could actually happen. Then I sit down with your team and show where they could have caught it sooner.", l: ["Tests people, tools and processes", "Shows what was noticed and what wasn't", "Practical training for next time"], b: "Plan a readiness check →" },
-    busy: { i: "⏱️", t: "Let smart tools do the boring work", p: "I build tools that sort through warnings and test results for your team, write reports automatically, and only bring in a person when it really matters.", l: ["Fewer false alarms", "Reports written for you", "Hours saved every week"], b: "Automate it →" },
-    bot: { i: "💬", t: "An AI assistant that never misses a customer", p: "A WhatsApp assistant that answers questions day and night, spots serious buyers, and passes them straight to you.", l: ["Replies 24/7 in seconds", "Sends you your best leads", "Connects to tools you already use"], b: "Build my assistant →" }
-  };
-  var chips = document.querySelectorAll("#chips .chip"), ans = document.getElementById("answer");
-  chips.forEach(function (c) {
-    c.addEventListener("click", function () {
-      chips.forEach(function (x) { x.setAttribute("aria-selected", String(x === c)); });
-      var d = data[c.getAttribute("data-k")];
-      document.getElementById("aIco").textContent = d.i;
-      document.getElementById("aTitle").textContent = d.t;
-      document.getElementById("aText").textContent = d.p;
-      document.getElementById("aBtn").textContent = d.b;
-      var ul = document.getElementById("aList"); ul.innerHTML = "";
-      d.l.forEach(function (s) { var li = document.createElement("li"); li.textContent = s; ul.appendChild(li); });
-      if (!reduced) { ans.classList.remove("swap"); void ans.offsetWidth; ans.classList.add("swap"); }
-    });
+  /* cursor coordinates in hero */
+  var hero = document.getElementById("hero"), coords = document.getElementById("coords");
+  hero.addEventListener("mousemove", function (e) {
+    var r = hero.getBoundingClientRect();
+    function p(n) { return ("0000" + Math.max(0, Math.round(n))).slice(-4); }
+    coords.innerHTML = "X " + p(e.clientX - r.left) + "<br>Y " + p(e.clientY - r.top);
   });
 
-  /* carousel */
-  var car = document.getElementById("car");
-  function step(dir) { var card = car.querySelector(".proj"); var w = card.getBoundingClientRect().width + 16; car.scrollBy({ left: dir * w, behavior: reduced ? "auto" : "smooth" }); }
-  document.getElementById("prev").addEventListener("click", function () { step(-1); });
-  document.getElementById("next").addEventListener("click", function () { step(1); });
+  /* pixel icons */
+  document.querySelectorAll("[data-pix]").forEach(function (el) {
+    var bits = el.getAttribute("data-pix"), html = "";
+    for (var i = 0; i < 49; i++) { var b = bits.charAt(i); html += "<i class='" + (b === "1" ? "f" : "") + (i === 6 ? " s" : "") + "'></i>"; }
+    el.innerHTML = html;
+  });
 
-  /* reveal + timeline */
-  var tl = document.getElementById("timeline");
-  var els = document.querySelectorAll("[data-r]");
+  /* hero headline in */
+  requestAnimationFrame(function () { setTimeout(function () { hero.classList.add("ready"); }, 80); });
+
+  /* instrument panel */
+  var segs = document.getElementById("segs"), scoreEl = document.getElementById("score"), stateEl = document.getElementById("state");
+  var items = document.querySelectorAll("#checks li");
+  for (var s = 0; s < 20; s++) segs.appendChild(document.createElement("i"));
+  var segEls = segs.querySelectorAll("i");
+  var cur = 0;
+  function pad(n) { return ("000" + n).slice(-3); }
+  function show(v, mode) {
+    segs.className = "segs" + (mode ? " " + mode : "");
+    var on = Math.round(v / 5);
+    segEls.forEach(function (el, i) { el.classList.toggle("on", i < on); });
+  }
+  function go(to, mode, ms) {
+    var from = cur; cur = to; show(to, mode);
+    if (reduced) { scoreEl.textContent = pad(to); return; }
+    var t0 = performance.now();
+    (function f(t) { var p = Math.min(1, (t - t0) / ms); scoreEl.textContent = pad(Math.round(from + (to - from) * p)); if (p < 1) requestAnimationFrame(f); })(t0);
+  }
+  function setItem(li, cls, txt) { li.classList.remove("found", "fixed"); if (cls) li.classList.add(cls); li.querySelector(".st").textContent = txt; }
+  function run() {
+    items.forEach(function (li) { setItem(li, "", "Waiting"); });
+    cur = 0; scoreEl.textContent = "000"; show(0); stateEl.textContent = "Checking";
+    var t = 500;
+    items.forEach(function (li) { setTimeout(function () { setItem(li, "found", "Found"); }, t); t += 450; });
+    setTimeout(function () { go(34, "bad", 900); stateEl.textContent = "4 weak spots"; }, t);
+    t += 1500;
+    var steps = [55, 71, 84, 96];
+    items.forEach(function (li, i) {
+      setTimeout(function () { setItem(li, "fixed", "Fixed"); go(steps[i], i === 3 ? "good" : "", 600); if (i === 3) stateEl.textContent = "All fixed"; }, t);
+      t += 900;
+    });
+    return t;
+  }
+  if (reduced) {
+    items.forEach(function (li) { setItem(li, "fixed", "Fixed"); });
+    cur = 96; scoreEl.textContent = "096"; show(96, "good"); stateEl.textContent = "All fixed";
+  } else {
+    var total = run();
+    setInterval(run, total + 3500);
+  }
+
+  /* reveal */
+  var els = document.querySelectorAll("[data-r]"), proc = document.getElementById("proc");
   if ("IntersectionObserver" in window && !reduced) {
     var io = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
     els.forEach(function (el) { io.observe(el); });
-    io.observe(tl);
+    io.observe(proc);
   } else {
     els.forEach(function (el) { el.classList.add("in"); });
-    tl.classList.add("in");
+    proc.classList.add("in");
   }
-
-  /* active nav link */
-  var secs = ["help", "steps", "projects", "about"].map(function (id) { return document.getElementById(id); });
-  var navA = links.querySelectorAll("a");
-  window.addEventListener("scroll", function () {
-    var y = window.scrollY + 140, cur = -1;
-    secs.forEach(function (s, i) { if (s.offsetTop <= y) cur = i; });
-    navA.forEach(function (a, i) { a.classList.toggle("active", i === cur); });
-  }, { passive: true });
 })();
 </script>
 </body>
