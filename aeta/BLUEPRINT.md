@@ -2,6 +2,8 @@
 
 Blueprint for an Indian real estate client: compliance checklist, technical architecture, build cost, monthly running cost and timeline.
 
+Step-by-step work breakdown, stack pricing and per-component running cost: see [PROJECT_PLAN.md](./PROJECT_PLAN.md).
+
 > All prices are estimates (Oct 2026, ₹1 ≈ $0.0114 / $1 ≈ ₹88). Verify vendor pricing before quoting a client — WhatsApp, telephony and voice-AI rates change often.
 
 ---
@@ -212,7 +214,7 @@ appointments(id, lead_id, slot, calendar_event_id)
 | Option | Cost | Time |
 |---|---|---|
 | **Lean** — 2 devs + managed platforms | **₹8 – 12 lakh** (~$9–14k) | 10–12 weeks |
-| **Standard** — in-house team of 3–4 (above) | **₹22 – 27 lakh** (~$25–31k) | 14–16 weeks |
+| **Standard** — in-house team of 3–4 (above) | **₹23 – 28 lakh** (~$26–32k) | 14–16 weeks |
 | **Agency / outsourced** | **₹30 – 50 lakh** (~$34–57k) | 12–20 weeks |
 
 ---
