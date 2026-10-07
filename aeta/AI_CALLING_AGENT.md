@@ -143,3 +143,58 @@ At ~1,000 leads/month the AI costs about the same as 1.5–2 telecallers, but re
 | Productised / SaaS (reuse across clients) | ₹1.5–2.5 lakh setup + ₹40–60k/month platform fee + ₹7–8 per call-minute | Build once, sell many; margin comes from usage and platform fee |
 
 The SaaS model makes sense if you plan to sell this to more than one builder or broker. The ₹11–13 lakh build cost is recovered after about 4–6 clients.
+
+---
+
+## Cheapest option (budget build)
+
+One freelance developer wiring together managed services, no custom code-heavy pipeline or dashboard.
+
+### Stack
+
+| Need | Tool | Cost |
+|---|---|---|
+| Voice agent (STT + LLM + TTS + orchestration) | Bolna or Vapi (managed) | per minute, see below |
+| Phone line | Exotel number connected via SIP | ₹1,000–2,000/month rental |
+| Glue / automation (webhook → call → retries → logging) | n8n self-hosted on a small VPS | ₹500–1,000/month |
+| Lead + call log, property facts | Google Sheets (or client's existing CRM) | ₹0 |
+| Site-visit booking | Cal.com free plan / Google Calendar | ₹0 |
+| WhatsApp reminders | BSP starter plan (AiSensy / Interakt) | ₹1,000–3,000/month incl. messages |
+
+### Build steps (≈ 3 weeks, 1 developer at ~₹6,000/day)
+
+| # | Step | Days | Cost |
+|---|---|---|---|
+| 1 | Configure voice agent: prompt, Hinglish voice, qualification questions | 4 | ₹24,000 |
+| 2 | Exotel number + SIP link to voice platform | 1 | ₹6,000 |
+| 3 | Meta lead form → n8n webhook (signature check) → trigger call | 2 | ₹12,000 |
+| 4 | Property facts in Google Sheet, exposed as agent tool | 2 | ₹12,000 |
+| 5 | Post-call webhook → summary + score to Sheet/CRM; booking link + reminder on WhatsApp | 3 | ₹18,000 |
+| 6 | Retry ladder, DND/consent check, daily spend cap in n8n | 2 | ₹12,000 |
+| 7 | 100+ test calls, script tuning, go-live | 4 | ₹24,000 |
+| | **Labour** | **18** | **₹1,08,000** |
+| | Test-call credits, Exotel KYC/deposit, template privacy policy | | ₹20,000–50,000 |
+| | **Total build** | | **≈ ₹1.3–1.6 lakh** (~$1.5–1.8k) |
+
+### Monthly running (~1,000 leads)
+
+| Item | Monthly |
+|---|---|
+| Voice minutes (≈ 3,000 min × ~₹5) — keep calls short (≈ 3 min) | ₹15,000 |
+| Phone number rental | ₹1,500 |
+| WhatsApp BSP plan + reminders | ₹2,500 |
+| VPS for n8n | ₹800 |
+| Google Sheets, Cal.com | ₹0 |
+| Support (on-demand, ~1 day/month) | ₹5,000 |
+| **Total** | **≈ ₹25,000** (~$285) |
+
+### Trade-offs vs the full build
+
+- No custom dashboard — recordings and transcripts live in the voice platform's console; leads in a Sheet.
+- Less control over latency and voice quality; locked into the voice vendor's per-minute price.
+- Google Sheets gets slow beyond a few thousand leads — move to a real database then.
+- Fine for a pilot or a single client; upgrade to the 8-week build once volume or client count grows.
+
+### Suggested price to client
+
+≈ **₹2.5–3.5 lakh setup + ₹35–45k/month** (usage included up to ~1,000 leads, ₹7–8 per extra minute).
